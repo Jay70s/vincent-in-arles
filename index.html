@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent in Arles — Fifteen Months of Yellow</title>
+<meta name="description" content="Fifteen months, two hundred paintings, 173 letters. The story of Vincent van Gogh in Arles, told through his own words, his colours, and the places that are still there.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
+</head>
+<body>
+
+<!-- progress spine -->
+<div class="spine"><div class="spine-fill" id="spineFill"></div></div>
+
+<!-- nav -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#top">V<span>·</span>Arles</a>
+  <div class="nav-links">
+    <a href="#timeline">The Fifteen Months</a>
+    <a href="#colors">His Words as Colour</a>
+    <a href="#map">The Map</a>
+    <a href="#people">The People</a>
+    <a class="nav-wiki" href="wiki/">The Wiki</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-stars" id="stars"></div>
+  <div class="hero-stage">
+    <div class="hero-inner">
+      <p class="hero-kicker">Arles, Provence · February 1888 — May 1889</p>
+      <h1 class="hero-title">Vincent<br>in Arles</h1>
+      <p class="hero-sub">Fifteen months. Roughly two hundred paintings.<br>
+      173 letters that tell us, colour by colour, what he saw.</p>
+      <a class="hero-cta" href="#timeline">Begin in the snow <span>↓</span></a>
+    </div>
+    <figure class="hero-film">
+      <video id="heroVideo" autoplay muted loop playsinline
+             poster="assets/vincent-snow-poster.jpg"
+             aria-label="Vincent walking a snowy road">
+        <source src="assets/vincent-snow.mp4" type="video/mp4">
+      </video>
+      <button class="hero-sound" id="soundBtn" aria-pressed="false"
+              title="Play the original theme">♪ &nbsp;Sound&nbsp;·&nbsp;off</button>
+    </figure>
+  </div>
+  <audio id="heroAudio" src="assets/vincent-theme.m4a" loop preload="none"></audio>
+  <p class="hero-footnote">Built from the letters of Vincent van Gogh · paintings in the public domain · original music</p>
+</header>
+
+<!-- ============ TIMELINE ============ -->
+<main id="timeline" class="timeline"></main>
+
+<!-- ============ HIS WORDS AS COLOUR ============ -->
+<section class="colors" id="colors">
+  <div class="colors-head">
+    <p class="kicker">The signature room</p>
+    <h2>His Words as Colour</h2>
+    <p class="colors-intro" id="colorsIntro"></p>
+  </div>
+  <div class="colors-stage">
+    <figure class="colors-painting">
+      <img id="colorsImg" src="" alt="Starry Night Over the Rhône">
+      <figcaption id="colorsCaption"></figcaption>
+    </figure>
+    <div class="chips" id="chips"></div>
+  </div>
+  <p class="colors-source" id="colorsSource"></p>
+  <p class="chips-hint">Click a swatch to copy its colour.</p>
+</section>
+
+<!-- ============ MAP ============ -->
+<section class="mapsec" id="map">
+  <div class="mapsec-head">
+    <p class="kicker">Walk his streets</p>
+    <h2>The Map of Arles</h2>
+    <p>Almost everything he painted stood within twenty minutes' walk of the yellow house.
+    Click a marker — the paintings are the photographs he left us.</p>
+  </div>
+  <div id="leafletMap"></div>
+</section>
+
+<!-- ============ PEOPLE ============ -->
+<section class="people" id="people">
+  <div class="people-head">
+    <p class="kicker">He was never really alone</p>
+    <h2>The People of the Letters</h2>
+    <p>316 people appear in the Arles letters. First, the man who wrote them — then the seven who carried the story.</p>
+  </div>
+
+  <!-- protagonist -->
+  <article class="protagonist" id="protagonist">
+    <figure class="prot-fig">
+      <img id="protImg" src="" alt="Self-Portrait Dedicated to Paul Gauguin, Arles 1888">
+      <figcaption id="protImgTitle"></figcaption>
+    </figure>
+    <div class="prot-body">
+      <p class="kicker">The protagonist</p>
+      <h3 id="protName"></h3>
+      <p class="prot-dates" id="protDates"></p>
+      <div class="prot-text" id="protText"></div>
+      <div class="ch-quote prot-quote">
+        <blockquote id="protQuote"></blockquote>
+        <cite id="protQuoteSource"></cite>
+      </div>
+    </div>
+  </article>
+
+  <div class="people-grid" id="peopleGrid"></div>
+</section>
+
+<!-- ============ WIKI GATEWAY ============ -->
+<section class="wikicta">
+  <div class="wikicta-inner">
+    <p class="kicker">The archive behind this site</p>
+    <h2>Read all 173 letters</h2>
+    <p>Everything on this page was built from a searchable wiki of the Arles
+    correspondence — every letter with a summary, every one of the 316 people
+    who appear in them, and 19 recurring themes, all cross-linked.</p>
+    <a class="wikicta-btn" href="wiki/">Enter the Wiki <span>→</span></a>
+    <p class="wikicta-stats">173 letters · 316 people · 19 themes · full-text search</p>
+  </div>
+</section>
+
+<!-- ============ EPILOGUE ============ -->
+<section class="epilogue">
+  <blockquote>
+    “It often seems to me that the night is even more richly coloured than the day.”
+  </blockquote>
+  <p>— Vincent, to his sister Willemien, September 1888</p>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-cols">
+    <div>
+      <h3>Sources</h3>
+      <p>Letter texts and quotations: <em>Vincent van Gogh — The Letters</em>,
+      Van Gogh Museum &amp; Huygens ING (<a href="http://vangoghletters.org" target="_blank" rel="noopener">vangoghletters.org</a>),
+      licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
+      Letter numbers (e.g. Letter 691) link to that edition.</p>
+    </div>
+    <div>
+      <h3>Images</h3>
+      <p>All paintings are in the public domain; digital images via
+      <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
+      Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
+    </div>
+    <div>
+      <h3>About</h3>
+      <p>A non-commercial study project built from a knowledge graph of the 173 Arles letters —
+      summaries, people and themes cross-linked in an Obsidian wiki, narrated here.
+      This site inherits CC BY-NC-SA 4.0 for the letter-derived content.</p>
+    </div>
+  </div>
+  <p class="footer-sig">Vincent in Arles · 2026</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

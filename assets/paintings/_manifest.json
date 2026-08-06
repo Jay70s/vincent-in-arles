@@ -1,0 +1,97 @@
+{
+ "yellow-house": {
+  "file": "File:Vincent van Gogh - The yellow house ('The street').jpg",
+  "local": "yellow-house.jpg",
+  "bytes": 1083015
+ },
+ "cafe-terrace": {
+  "file": "File:Vincent van Gogh (1853-1890) Caféterras bij nacht (place du Forum) Kröller-Müller Museum Otterlo 23-8-2016 13-35-40.JPG",
+  "local": "cafe-terrace.jpg",
+  "bytes": 1428101
+ },
+ "starry-rhone": {
+  "file": "File:Starry Night Over the Rhone.jpg",
+  "local": "starry-rhone.jpg",
+  "bytes": 1543768
+ },
+ "bedroom": {
+  "file": "File:Vincent van Gogh - De slaapkamer - Google Art Project.jpg",
+  "local": "bedroom.jpg",
+  "bytes": 1150257
+ },
+ "roulin": {
+  "file": "File:Portrait of the Postman Joseph Roulin (1888) van Gogh Getty.jpg",
+  "local": "roulin.jpg",
+  "bytes": 2016269
+ },
+ "arlesienne": {
+  "file": "File:Van gogh - L'Arlésienne (portrait of Madame Ginoux) (1890) Kroller Muller Google Art Project.jpg",
+  "local": "arlesienne.jpg",
+  "bytes": 1667098
+ },
+ "hospital-courtyard": {
+  "file": "File:Van Gogh - Garten des Hospitals in Arles1.jpeg",
+  "local": "hospital-courtyard.jpg",
+  "bytes": 1335612
+ },
+ "sunflowers": {
+  "file": "File:Vincent Willem van Gogh 127.jpg",
+  "local": "sunflowers.jpg",
+  "bytes": 1703118
+ },
+ "night-cafe": {
+  "file": "File:Le café de nuit (The Night Café) by Vincent van Gogh.jpeg",
+  "local": "night-cafe.jpg",
+  "bytes": 1116267
+ },
+ "langlois-bridge": {
+  "file": "File:Vincent Willem van Gogh - Pont de Langlois - Kröller-Müller.jpg",
+  "local": "langlois-bridge.jpg",
+  "bytes": 1248815
+ },
+ "dr-rey": {
+  "file": "File:Vincent van Gogh - Portrait of Doctor Félix Rey (F500).jpg",
+  "local": "dr-rey.jpg",
+  "bytes": 2405271
+ },
+ "pink-peach": {
+  "file": "File:Vincent van Gogh - Pink peach trees ('Souvenir de Mauve') - Google Art Project.jpg",
+  "local": "pink-peach.jpg",
+  "bytes": 2685362
+ },
+ "harvest": {
+  "file": "File:Vincent Van Gogh - Corn Harvest in Provence - Google Art Project.jpg",
+  "local": "harvest.jpg",
+  "bytes": 1474209
+ },
+ "bandaged-ear": {
+  "file": "File:Vincent van Gogh - Self-Portrait with Bandaged Ear 1889 - Google Art Project.jpg",
+  "local": "bandaged-ear.jpg",
+  "bytes": 1723015
+ },
+ "vincent-self": {
+  "file": "File:Van Gogh self-portrait dedicated to Gauguin.jpg",
+  "local": "vincent-self.jpg",
+  "bytes": 739093
+ },
+ "theo": {
+  "file": "File:Theo van Gogh DSCF9488.JPG",
+  "local": "theo.jpg",
+  "bytes": 543027
+ },
+ "gauguin-self": {
+  "file": "File:Paul Gauguin - Self-portrait with portrait of Bernard, 'Les Misérables', 1888 - Detail 2.jpg",
+  "local": "gauguin-self.jpg",
+  "bytes": 950550
+ },
+ "bernard-self": {
+  "file": "File:Émile Bernard - Self-portrait with portrait of Gauguin,1888 - Detail 2.jpg",
+  "local": "bernard-self.jpg",
+  "bytes": 905989
+ },
+ "willemien": {
+  "file": "File:Willemina Jacoba van Gogh.jpg",
+  "local": "willemien.jpg",
+  "bytes": 12198
+ }
+}

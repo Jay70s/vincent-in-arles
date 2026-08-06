@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지식 그래프 — Vincent Wiki</title>
+<meta name="description" content="아를 편지 위키의 508개 노드와 2,085개 연결을 인터랙티브 그래프로 탐색합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/wiki.css?v=20260806">
+<link rel="stylesheet" href="../css/explore.css?v=20260806">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕸️</text></svg>">
+</head>
+<body class="gv-body">
+
+<header class="wnav">
+  <a class="wnav-brand" href="../wiki/">V<span>·</span>Wiki</a>
+  <nav class="wnav-links">
+    <a href="../wiki/">위키 홈</a>
+    <a href="charts.html">데이터</a>
+    <a href="../index.html">Arles 사이트</a>
+  </nav>
+</header>
+
+<div class="gv-wrap">
+  <aside class="gv-panel">
+    <h1>지식 그래프</h1>
+    <p class="gv-lede">편지·인물·주제가 서로를 언급하며 만든 별자리입니다.
+    노드를 <strong>끌어 움직이고</strong>, 클릭하면 해당 위키 문서로 갑니다.</p>
+
+    <div class="gv-field">
+      <input type="search" id="gvSearch" placeholder="노드 이름 검색…" autocomplete="off">
+    </div>
+
+    <div class="gv-legend">
+      <label class="lg lg-letter"><input type="checkbox" data-kind="letter" checked><span class="dot"></span>편지 <b id="cLetter">0</b></label>
+      <label class="lg lg-person"><input type="checkbox" data-kind="person" checked><span class="dot"></span>인물 <b id="cPerson">0</b></label>
+      <label class="lg lg-theme"><input type="checkbox" data-kind="theme" checked><span class="dot"></span>주제 <b id="cTheme">0</b></label>
+    </div>
+
+    <div class="gv-field">
+      <label class="gv-label">최소 연결 수 <b id="degVal">12</b></label>
+      <input type="range" id="degFilter" min="3" max="60" value="12">
+      <p class="gv-hint">값을 올리면 중심 인물·주제만 남습니다.</p>
+    </div>
+
+    <div class="gv-info" id="gvInfo">
+      <p class="gv-placeholder">노드에 마우스를 올리면 정보가 표시됩니다.</p>
+    </div>
+
+    <p class="gv-meta" id="gvMeta"></p>
+    <button class="gv-reset" id="gvReset">시점 초기화</button>
+  </aside>
+
+  <div class="gv-stage">
+    <svg id="gv"></svg>
+    <div class="gv-tip" id="gvTip" hidden></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="../js/graphview.js?v=20260806"></script>
+</body>
+</html>
