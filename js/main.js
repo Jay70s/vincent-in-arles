@@ -55,12 +55,32 @@
   }, { threshold: 0 }).observe(v);
 })();
 
-/* ---------- progress spine ---------- */
+/* ---------- progress spine + 스크롤 배경 그라데이션 ----------
+   L691에서 그가 적은 색 순서 그대로(하늘→물→땅→마을→보라→가스등→금→청동→초록별→분홍별)
+   페이지를 내려갈수록 배경이 그 팔레트를 차례로 통과한다. */
 const spineFill = document.getElementById("spineFill");
-addEventListener("scroll", () => {
+const skyLayer = document.getElementById("skyLayer");
+const PALETTE = COLOR_STORY.chips.map(c => c.hex);
+
+const hex2rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+const RGB = PALETTE.map(hex2rgb);
+
+function paletteAt(p) {
+  const x = Math.max(0, Math.min(1, p)) * (RGB.length - 1);
+  const i = Math.min(Math.floor(x), RGB.length - 2);
+  const [r, g, b] = mix(RGB[i], RGB[i + 1], x - i);
+  return `${r}, ${g}, ${b}`;
+}
+
+function onScroll() {
   const h = document.documentElement;
-  spineFill.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
-}, { passive: true });
+  const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+  spineFill.style.width = p * 100 + "%";
+  if (skyLayer) skyLayer.style.setProperty("--sky", paletteAt(p));
+}
+addEventListener("scroll", onScroll, { passive: true });
+onScroll();
 
 /* ---------- chapters ---------- */
 const P = "assets/paintings/";

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/wiki.css?v=20260807">
+<link rel="stylesheet" href="../../css/wiki.css?v=20260808b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
 
 </head>
@@ -16,18 +16,19 @@
   <a class="wnav-brand" href="../../wiki/">V<span>·</span>Wiki</a>
   <div class="wsearch" id="searchHost"></div>
   <nav class="wnav-links">
-    <a href="../../wiki/#explore">둘러보기</a>
-    <a href="../../wiki/#maps">지도</a>
-    <a href="../../wiki/#themes">주제</a>
-    <a href="../../wiki/#people">인물</a>
-    <a href="../../wiki/#letters">편지</a>
-    <a href="../../index.html">Arles 사이트</a>
+    <a href="../../wiki/#explore" data-en="Explore">둘러보기</a>
+    <a href="../../wiki/#maps" data-en="Maps">지도</a>
+    <a href="../../wiki/#themes" data-en="Themes">주제</a>
+    <a href="../../wiki/#people" data-en="People">인물</a>
+    <a href="../../wiki/#letters" data-en="Letters">편지</a>
+    <a href="../../index.html" data-en="Arles Site">Arles 사이트</a>
   </nav>
+  <div class="langsw" role="group" aria-label="Language"><button type="button" data-setlang="ko">KOR</button><button type="button" data-setlang="en">ENG</button></div>
 </header>
 <main class="wmain">
 <article class="wdoc" data-pagefind-body>
-  <p class="wkind" data-pagefind-filter="분류">지도</p>
-  <h1 data-pagefind-meta="title">🔗 지식 그래프 안내</h1>
+  <p class="wkind" data-pagefind-filter="분류" data-en="Map">지도</p>
+  <h1 data-pagefind-meta="title" data-en="🔗 About the Knowledge Graph">🔗 지식 그래프 안내</h1>
   
   <div class="wbody">
 <p>이 위키는 <strong>512개 노드</strong>(편지 173 · 인물 316 · 주제 19 · 지도 4)와 <strong>2,611개 연결</strong>로 이루어진 지식 그래프입니다. 모든 연결은 편지 본문의 실제 인물·주제 언급에서 나온 것으로, <strong>0 토큰</strong>(순수 구조 분석)으로 구축됐습니다.</p>
@@ -36,13 +37,13 @@
 <p>2. <strong>Graphify 인터랙티브 그래프</strong> — `graphify-out/graph.html`을 브라우저에서 열기. 노드 클릭·검색·커뮤니티별 색상 필터. 연결이 많은 아이디어일수록 큰 점으로 표시됩니다.</p>
 <hr>
 <h3>🌟 God Nodes — 모든 것이 통과하는 중심</h3>
-<div class="tbl-wrap"><table><thead><tr><th>순위</th><th>노드</th><th>연결 수</th><th>의미</th></tr></thead><tbody><tr><td>1</td><td><a class="wl" href="../👤-인물-지도/">👤 인물 지도</a> · <a class="wl" href="../🗓️-시기별-지도/">🗓️ 시기별 지도</a></td><td>317 · 174</td><td>위키의 항해 허브</td></tr><tr><td>2</td><td><a class="wl" href="../Paul-Gauguin/">Paul Gauguin</a></td><td>118</td><td><strong>인물 중 최다</strong> — 아를 시기의 중심 인물</td></tr><tr><td>3</td><td><a class="wl" href="../고갱과의-협업/">고갱과의 협업</a> · <a class="wl" href="../재정과-테오/">재정과 테오</a></td><td>86 · 85</td><td>최대 주제</td></tr><tr><td>4</td><td><a class="wl" href="../Emile-Bernard/">Emile Bernard</a></td><td>78</td><td>편지를 주고받은 젊은 벗</td></tr><tr><td>5</td><td><a class="wl" href="../프로방스-풍경/">프로방스 풍경</a> · <a class="wl" href="../정신건강/">정신건강</a> · <a class="wl" href="../화가-공동체/">화가 공동체</a> · <a class="wl" href="../색채론/">색채론</a></td><td>59·51·47·43</td><td>핵심 주제군</td></tr></tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th>순위</th><th>노드</th><th>연결 수</th><th>의미</th></tr></thead><tbody><tr><td>1</td><td><a class="wl" href="../👤-인물-지도/" data-en="👤 People Map">👤 인물 지도</a> · <a class="wl" href="../🗓️-시기별-지도/" data-en="🗓️ Timeline Map">🗓️ 시기별 지도</a></td><td>317 · 174</td><td>위키의 항해 허브</td></tr><tr><td>2</td><td><a class="wl" href="../Paul-Gauguin/">Paul Gauguin</a></td><td>118</td><td><strong>인물 중 최다</strong> — 아를 시기의 중심 인물</td></tr><tr><td>3</td><td><a class="wl" href="../고갱과의-협업/" data-en="Working with Gauguin">고갱과의 협업</a> · <a class="wl" href="../재정과-테오/" data-en="Money &amp; Theo">재정과 테오</a></td><td>86 · 85</td><td>최대 주제</td></tr><tr><td>4</td><td><a class="wl" href="../Emile-Bernard/">Emile Bernard</a></td><td>78</td><td>편지를 주고받은 젊은 벗</td></tr><tr><td>5</td><td><a class="wl" href="../프로방스-풍경/" data-en="Provence Landscape">프로방스 풍경</a> · <a class="wl" href="../정신건강/" data-en="Mental Health">정신건강</a> · <a class="wl" href="../화가-공동체/" data-en="Artists&#x27; Community">화가 공동체</a> · <a class="wl" href="../색채론/" data-en="Colour Theory">색채론</a></td><td>59·51·47·43</td><td>핵심 주제군</td></tr></tbody></table></div>
 <div class="callout"><p class="callout-title">그래프가 밝혀낸 통찰</p>
 <blockquote>**<a class="wl" href="../Paul-Gauguin/">Paul Gauguin</a>는 여러 주제 커뮤니티를 잇는 &#x27;다리&#x27;(betweenness 0.065)입니다.** 고갱은 단순히 자주 언급된 인물이 아니라, 협업·노란 집·재정·정신적 위기 등 서로 다른 이야기 갈래를 하나로 연결하는 결절점입니다 — 아를 시기 전체가 그를 축으로 돌아갔음을 그래프가 수치로 보여줍니다.</blockquote>
 <hr>
 <h3>🧩 이야기 갈래</h3>
 <p>God node와 주제·인물 연결을 분석해 얻은, 아를 시기를 관통하는 <strong>7개의 이야기 갈래</strong>입니다. (`graph.html`은 이를 색상으로 구분된 커뮤니티로 실시간 표시합니다 — 색상 군집이 아래 갈래와 대체로 대응합니다.)</p>
-<div class="tbl-wrap"><table><thead><tr><th>이야기 갈래</th><th>대표 노드</th></tr></thead><tbody><tr><td><strong>고갱과 노란 집</strong> — 아를의 협업</td><td><a class="wl" href="../Paul-Gauguin/">Paul Gauguin</a>, <a class="wl" href="../Emile-Bernard/">Emile Bernard</a>, <a class="wl" href="../노란-집/">노란 집</a>, <a class="wl" href="../고갱과의-협업/">고갱과의 협업</a></td></tr><tr><td><strong>테오와의 대화</strong> — 재정·풍경·예술론</td><td><a class="wl" href="../재정과-테오/">재정과 테오</a>, <a class="wl" href="../프로방스-풍경/">프로방스 풍경</a>, <a class="wl" href="../색채론/">색채론</a>, <a class="wl" href="../화가-공동체/">화가 공동체</a></td></tr><tr><td><strong>옛 거장과 초상화</strong> — 미술사적 참조</td><td><a class="wl" href="../Ferdinand-Victor-Eugène-Delacroix/">Ferdinand Victor Eugène Delacroix</a>, <a class="wl" href="../Rembrandt-van-Rijn/">Rembrandt van Rijn</a>, <a class="wl" href="../Joseph-Etienne-Roulin/">Joseph Etienne Roulin</a></td></tr><tr><td><strong>가족과 위기</strong> — 정신건강의 시간</td><td><a class="wl" href="../Willemina-Jacoba-van-Gogh/">Willemina Jacoba van Gogh</a>, <a class="wl" href="../정신건강/">정신건강</a>, Félix Rey(주치의)</td></tr><tr><td><strong>동료 화가·문인 네트워크</strong></td><td><a class="wl" href="../John-Peter-Russell/">John Peter Russell</a>, Alphonse Daudet, Anna Boch</td></tr><tr><td><strong>흠모한 화가들</strong></td><td><a class="wl" href="../Adolphe-Joseph-Thomas-Monticelli/">Adolphe Joseph Thomas Monticelli</a>, Honoré Daumier</td></tr><tr><td><strong>일본주의</strong> — 우키요에와 밤의 카페</td><td><a class="wl" href="../Katsushika-Hokusai/">Katsushika Hokusai</a>, Siegfried Bing, <a class="wl" href="../일본주의/">일본주의</a></td></tr></tbody></table></div>
+<div class="tbl-wrap"><table><thead><tr><th>이야기 갈래</th><th>대표 노드</th></tr></thead><tbody><tr><td><strong>고갱과 노란 집</strong> — 아를의 협업</td><td><a class="wl" href="../Paul-Gauguin/">Paul Gauguin</a>, <a class="wl" href="../Emile-Bernard/">Emile Bernard</a>, <a class="wl" href="../노란-집/" data-en="The Yellow House">노란 집</a>, <a class="wl" href="../고갱과의-협업/" data-en="Working with Gauguin">고갱과의 협업</a></td></tr><tr><td><strong>테오와의 대화</strong> — 재정·풍경·예술론</td><td><a class="wl" href="../재정과-테오/" data-en="Money &amp; Theo">재정과 테오</a>, <a class="wl" href="../프로방스-풍경/" data-en="Provence Landscape">프로방스 풍경</a>, <a class="wl" href="../색채론/" data-en="Colour Theory">색채론</a>, <a class="wl" href="../화가-공동체/" data-en="Artists&#x27; Community">화가 공동체</a></td></tr><tr><td><strong>옛 거장과 초상화</strong> — 미술사적 참조</td><td><a class="wl" href="../Ferdinand-Victor-Eugène-Delacroix/">Ferdinand Victor Eugène Delacroix</a>, <a class="wl" href="../Rembrandt-van-Rijn/">Rembrandt van Rijn</a>, <a class="wl" href="../Joseph-Etienne-Roulin/">Joseph Etienne Roulin</a></td></tr><tr><td><strong>가족과 위기</strong> — 정신건강의 시간</td><td><a class="wl" href="../Willemina-Jacoba-van-Gogh/">Willemina Jacoba van Gogh</a>, <a class="wl" href="../정신건강/" data-en="Mental Health">정신건강</a>, Félix Rey(주치의)</td></tr><tr><td><strong>동료 화가·문인 네트워크</strong></td><td><a class="wl" href="../John-Peter-Russell/">John Peter Russell</a>, Alphonse Daudet, Anna Boch</td></tr><tr><td><strong>흠모한 화가들</strong></td><td><a class="wl" href="../Adolphe-Joseph-Thomas-Monticelli/">Adolphe Joseph Thomas Monticelli</a>, Honoré Daumier</td></tr><tr><td><strong>일본주의</strong> — 우키요에와 밤의 카페</td><td><a class="wl" href="../Katsushika-Hokusai/">Katsushika Hokusai</a>, Siegfried Bing, <a class="wl" href="../일본주의/" data-en="Japonisme">일본주의</a></td></tr></tbody></table></div>
 <div class="callout"><p class="callout-title">note</p>
 <blockquote>`graph.html`의 커뮤니티 색상은 Graphify가 연결 밀도로 자동 탐지한 것으로, 실행 시점의 그래프 구조에 따라 개수·경계가 달라질 수 있습니다. 위 갈래는 이를 사람이 읽기 쉽게 해석한 지도입니다.</blockquote>
 <hr>
@@ -56,25 +57,17 @@
 <hr>
 <p><em>그래프 출처: `graphify-out/` (Graphify 0.9.7, 로컬 구조 분석 · 토큰 0). 콘텐츠 라이선스: CC BY-NC-SA 4.0.</em></p>
 
-<section class="backlinks" data-pagefind-ignore><h2>이 문서를 가리키는 문서 <span class="count">1</span></h2><ul class="bl-list"><li><a href="../🏠-Vincent-Wiki-홈/">🏠 Vincent Wiki 홈</a></li></ul></section>
+<section class="backlinks" data-pagefind-ignore><h2><span data-en="Pages that link here">이 문서를 가리키는 문서</span> <span class="count">1</span></h2><ul class="bl-list"><li><a href="../🏠-Vincent-Wiki-홈/">🏠 Vincent Wiki 홈</a></li></ul></section>
   </div>
 </article>
 </main>
 <footer class="wfoot">
-  <p>편지 원문·번역: <em>Vincent van Gogh — The Letters</em>, Van Gogh Museum &amp; Huygens ING
-  (<a href="http://vangoghletters.org" target="_blank" rel="noopener">vangoghletters.org</a>) ·
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
-  한국어 요약·주제 분류·연결은 이 위키의 창작물이며 같은 라이선스로 공유됩니다.</p>
+  <p data-en="Letter texts and translations: &lt;em&gt;Vincent van Gogh — The Letters&lt;/em&gt;, Van Gogh Museum &amp;amp; Huygens ING (&lt;a href=&quot;http://vangoghletters.org&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;vangoghletters.org&lt;/a&gt;) · &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/4.0/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;CC BY-NC-SA 4.0&lt;/a&gt;. The Korean summaries, theme classification and cross-links are original to this wiki and shared under the same licence.">편지 원문·번역: <em>Vincent van Gogh — The Letters</em>, Van Gogh Museum &amp; Huygens ING (<a href="http://vangoghletters.org" target="_blank" rel="noopener">vangoghletters.org</a>) · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. 한국어 요약·주제 분류·연결은 이 위키의 창작물이며 같은 라이선스로 공유됩니다.</p>
+  <p class="credit"><span data-en="Made by">제작</span>
+  <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener">Story&amp;Record</a></p>
 </footer>
 <link href="../../pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="../../pagefind/pagefind-ui.js"></script>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.PagefindUI) new PagefindUI({
-    element: "#searchHost", showImages: false, pageSize: 8,
-    translations: { placeholder: "위키 검색…", zero_results: "'[SEARCH_TERM]' 검색 결과가 없습니다" }
-  });
-});
-</script>
+<script src="../../js/wiki-i18n.js?v=20260808b"></script>
 </body>
 </html>

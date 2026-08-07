@@ -237,6 +237,30 @@ a.wl:hover { background: rgba(244,196,48,.18); border-color: var(--gold-ink); }
   background: rgba(244,196,48,.16); border-radius: 2rem; padding: .05rem .5rem;
 }
 
+/* ---------- 언어 스위치 (KOR/ENG) ---------- */
+.langsw {
+  display: inline-flex; flex: none;
+  border: 1px solid rgba(246,240,226,.28); border-radius: 2rem;
+  overflow: hidden; margin-left: .4rem;
+}
+.langsw button {
+  font-family: var(--sans); font-size: .66rem; letter-spacing: .1em;
+  padding: .32rem .62rem; cursor: pointer;
+  color: rgba(246,240,226,.66); background: transparent; border: 0;
+  transition: background .2s, color .2s;
+}
+.langsw button:hover { color: var(--yellow); }
+.langsw button[aria-pressed="true"] {
+  background: var(--yellow); color: var(--night-deep); font-weight: 600;
+}
+
+/* 번역이 없는 한국어 전용 블록은 ENG에서 감춘다 */
+html[data-lang="en"] .ko-only { display: none; }
+
+/* 크레딧 */
+.wfoot .credit { margin-top: 1rem; font-size: .78rem; }
+.wfoot .credit a { font-weight: 500; }
+
 /* ---------- 둘러보기 카드 ---------- */
 .wcards {
   list-style: none; padding: 0; margin: 0;

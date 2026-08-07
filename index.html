@@ -9,10 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260808b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
 </head>
 <body>
+
+<!-- 스크롤에 따라 그의 팔레트를 통과하는 배경 레이어 -->
+<div class="sky-layer" id="skyLayer" aria-hidden="true"></div>
 
 <!-- progress spine -->
 <div class="spine"><div class="spine-fill" id="spineFill"></div></div>
@@ -51,7 +54,8 @@
     </figure>
   </div>
   <audio id="heroAudio" src="assets/vincent-theme.m4a" loop preload="none"></audio>
-  <p class="hero-footnote">Built from the letters of Vincent van Gogh · paintings in the public domain · original music</p>
+  <p class="hero-footnote">Built from the letters of Vincent van Gogh · paintings in the public domain ·
+    original music by <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener">Story&amp;Record</a></p>
 </header>
 
 <!-- ============ TIMELINE ============ -->
@@ -158,12 +162,19 @@
       summaries, people and themes cross-linked in an Obsidian wiki, narrated here.
       This site inherits CC BY-NC-SA 4.0 for the letter-derived content.</p>
     </div>
+    <div>
+      <h3>Credits</h3>
+      <p>Research, writing, design and original music by
+      <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener"><strong>Story&amp;Record</strong></a>.<br>
+      <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener">www.storyandrecord.com</a></p>
+    </div>
   </div>
-  <p class="footer-sig">Vincent in Arles · 2026</p>
+  <p class="footer-sig">Vincent in Arles · 2026 ·
+    <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener">Story&amp;Record</a></p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+<script src="js/data.js?v=20260808b"></script>
+<script src="js/main.js?v=20260808b"></script>
 </body>
 </html>

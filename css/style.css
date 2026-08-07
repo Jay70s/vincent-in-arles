@@ -29,6 +29,19 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
+/* ---------- 스크롤 배경 레이어 ----------
+   --sky 는 main.js 가 스크롤 위치에 맞춰 L691 팔레트 사이를 보간해 넣는다.
+   어두운 섹션은 반투명이라 이 색이 비치고, 종이 섹션은 아주 옅게만 물든다. */
+.sky-layer {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  --sky: 42, 94, 108;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(var(--sky), .55) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(var(--sky), .38) 0%, rgba(var(--sky), .16) 55%, rgba(var(--sky), .42) 100%),
+    var(--night-deep);
+  transition: background .25s linear;
+}
+
 /* ---------- progress spine ---------- */
 .spine {
   position: fixed; top: 0; left: 0; right: 0; height: 3px;
@@ -63,9 +76,9 @@ a { color: inherit; }
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center;
   background:
-    radial-gradient(ellipse 120% 70% at 50% 115%, #2a3f68 0%, transparent 55%),
-    radial-gradient(ellipse 80% 50% at 50% 118%, rgba(244,196,48,.28) 0%, transparent 50%),
-    linear-gradient(180deg, var(--night-deep) 0%, var(--night) 60%, #14213a 100%);
+    radial-gradient(ellipse 120% 70% at 50% 115%, rgba(42,63,104,.55) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 50% at 50% 118%, rgba(244,196,48,.22) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(8,17,32,.72) 0%, rgba(13,27,46,.45) 60%, rgba(20,33,58,.72) 100%);
 }
 .hero-stars { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
 .hero-stars i {
@@ -124,6 +137,9 @@ a { color: inherit; }
   color: rgba(246,240,226,.35); font-size: .72rem; letter-spacing: .06em;
   z-index: 3;
 }
+.hero-footnote a { color: rgba(244,196,48,.75); text-decoration: none; }
+.hero-footnote a:hover { color: var(--yellow); text-decoration: underline; }
+
 /* 사운드 토글 — 족자 하단에 걸린 원곡(2:44) 재생 버튼 */
 .hero-sound {
   position: absolute; left: 50%; bottom: .9rem; transform: translateX(-50%);
@@ -143,7 +159,7 @@ a { color: inherit; }
 }
 
 /* ---------- timeline chapters ---------- */
-.timeline { background: var(--paper); }
+.timeline { background: rgba(246,240,226,.93); }
 .chapter {
   display: grid; grid-template-columns: 1fr 1fr; min-height: 92svh;
   border-bottom: 1px solid rgba(36,40,47,.08);
@@ -196,8 +212,8 @@ a { color: inherit; }
 /* ---------- colours section ---------- */
 .colors {
   background:
-    radial-gradient(ellipse 90% 60% at 50% -10%, #1d3352 0%, transparent 60%),
-    var(--night-deep);
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(29,51,82,.6) 0%, transparent 60%),
+    rgba(8,17,32,.74);
   color: var(--paper); padding: clamp(4rem, 9vw, 7rem) 2rem;
 }
 .colors-head { max-width: 46rem; margin: 0 auto 3rem; text-align: center; }
@@ -238,7 +254,7 @@ a { color: inherit; }
 .chips-hint { margin-top: .5rem; font-size: .7rem; color: rgba(246,240,226,.32); }
 
 /* ---------- map ---------- */
-.mapsec { background: var(--paper-deep); padding: clamp(4rem, 9vw, 6.5rem) 0 0; }
+.mapsec { background: rgba(239,230,210,.93); padding: clamp(4rem, 9vw, 6.5rem) 0 0; }
 .mapsec-head { max-width: 44rem; margin: 0 auto 2.6rem; text-align: center; padding: 0 2rem; }
 .mapsec-head p { color: var(--ink-soft); font-size: .95rem; }
 #leafletMap { height: 72svh; }
@@ -253,7 +269,7 @@ a { color: inherit; }
 
 /* ---------- people ---------- */
 .people {
-  background: var(--night); color: var(--paper);
+  background: rgba(13,27,46,.76); color: var(--paper);
   padding: clamp(4rem, 9vw, 7rem) 2rem;
 }
 .people-head { max-width: 44rem; margin: 0 auto 3rem; text-align: center; }
@@ -323,7 +339,7 @@ a { color: inherit; }
 .nav-wiki:hover { background: var(--yellow); color: var(--night-deep) !important; }
 
 .wikicta {
-  background: var(--paper-deep);
+  background: rgba(239,230,210,.93);
   padding: clamp(3.5rem, 8vw, 6rem) 2rem;
   border-top: 1px solid rgba(36,40,47,.1);
 }
@@ -351,7 +367,7 @@ a { color: inherit; }
 .epilogue {
   background:
     radial-gradient(ellipse 100% 80% at 50% 120%, rgba(244,196,48,.14) 0%, transparent 55%),
-    var(--night-deep);
+    rgba(8,17,32,.72);
   color: var(--paper); text-align: center;
   padding: clamp(5rem, 12vw, 8rem) 2rem;
 }
@@ -362,7 +378,7 @@ a { color: inherit; }
 }
 .epilogue p { color: rgba(246,240,226,.5); font-size: .82rem; letter-spacing: .06em; }
 
-.footer { background: #060d18; color: rgba(246,240,226,.6); padding: 3.5rem 2rem 2.4rem; }
+.footer { background: rgba(6,13,24,.88); color: rgba(246,240,226,.6); padding: 3.5rem 2rem 2.4rem; }
 .footer-cols {
   max-width: 72rem; margin: 0 auto 2.4rem;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem;
