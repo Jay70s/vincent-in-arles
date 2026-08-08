@@ -400,6 +400,74 @@ a { color: inherit; }
   color: rgba(246,240,226,.35); font-size: .85rem;
 }
 
+/* ---------- 네온 크레딧 ----------
+   형광 파랑(연도)과 형광 초록(Story&Record)이 각각 다른 리듬으로 명멸한다.
+   글자색은 흰빛에 가깝게 두고 번짐(text-shadow)으로 색을 만드는 것이
+   실제 네온관에 가장 가깝다. */
+.footer-sig {
+  font-size: clamp(1.25rem, 3vw, 1.7rem); font-style: normal; letter-spacing: .05em;
+  display: flex; flex-wrap: wrap; gap: .7rem;
+  align-items: baseline; justify-content: center;
+  padding: 1.4rem 0 .6rem;
+}
+.neon-blue, .neon-green {
+  font-family: var(--serif); font-weight: 600;
+  text-decoration: none; will-change: opacity, text-shadow;
+}
+.neon-blue {
+  color: #d8fbff;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px #a9f4ff,
+    0 0 10px #35dcff,
+    0 0 20px #00c8ff,
+    0 0 38px #00a2ff,
+    0 0 68px #0077ff,
+    0 0 110px rgba(0,110,255,.8);
+  animation: neon-flicker-blue 2.6s infinite;
+}
+.footer-sig a.neon-green {
+  color: #ddffd4;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px #c9ffb8,
+    0 0 10px #6bff45,
+    0 0 20px #39ff14,
+    0 0 40px #22e00a,
+    0 0 72px rgba(30,220,10,.85);
+  animation: neon-pulse-green 3.4s ease-in-out infinite;
+}
+.footer-sig a.neon-green:hover {
+  color: #f2fff0;
+  text-shadow:
+    0 0 1px #fff, 0 0 6px #dcffd0, 0 0 14px #7dff5a,
+    0 0 28px #39ff14, 0 0 56px #22e00a, 0 0 100px rgba(30,220,10,.95);
+}
+
+/* 파랑: 네온관처럼 불규칙하게 튀는 명멸 */
+@keyframes neon-flicker-blue {
+  0%, 100%   { opacity: 1; }
+  6%         { opacity: .58; }
+  8%         { opacity: 1; }
+  9%         { opacity: .42; }
+  11%        { opacity: 1; }
+  38%        { opacity: 1; }
+  40%        { opacity: .66; }
+  41.5%      { opacity: 1; }
+  72%        { opacity: 1; }
+  73%        { opacity: .5; }
+  74.5%      { opacity: 1; }
+}
+/* 초록: 숨 쉬듯 부드럽게 밝아지고 어두워진다 */
+@keyframes neon-pulse-green {
+  0%, 100% { opacity: .82; filter: brightness(1); }
+  50%      { opacity: 1;   filter: brightness(1.22); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-blue, .neon-green { animation: none; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
   .nav { padding: .8rem 1.1rem; }
