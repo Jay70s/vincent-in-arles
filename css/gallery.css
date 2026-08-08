@@ -1,0 +1,149 @@
+/* ============================================================
+   아를의 그림 — 갤러리 + 라이트박스
+   ============================================================ */
+.gal-body { background: var(--paper-warm); }
+.gal-main { max-width: 76rem; margin: 0 auto; padding: 2.4rem 1.4rem 5rem; }
+
+.gal-head { text-align: center; max-width: 44rem; margin: 0 auto 2.4rem; }
+.gal-head .kick {
+  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--gold-ink); margin-bottom: .9rem;
+}
+.gal-head h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.1rem, 5.5vw, 3.3rem); line-height: 1.05;
+}
+.gal-lede { color: var(--ink-soft); font-size: .93rem; margin-top: 1rem; }
+
+.gal-stats {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1.4rem;
+  margin: 1.6rem 0 1.4rem;
+}
+.gal-stats span { font-size: .78rem; color: var(--ink-soft); }
+.gal-stats b {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 600;
+  color: var(--ink); margin-right: .25rem;
+}
+.gal-stats i { font-style: normal; }
+
+.gal-controls {
+  display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center;
+  align-items: center;
+}
+#galSearch {
+  font-family: inherit; font-size: .85rem; min-width: 15rem;
+  padding: .5rem 1rem; border-radius: 2rem;
+  border: 1px solid rgba(36,40,47,.2); background: #fff; color: var(--ink);
+}
+#galSearch:focus { outline: 1px solid var(--yellow); }
+.gal-filters { display: flex; gap: .35rem; flex-wrap: wrap; }
+.gal-filters button {
+  font-family: inherit; font-size: .74rem; letter-spacing: .06em; cursor: pointer;
+  padding: .45rem .9rem; border-radius: 2rem;
+  border: 1px solid rgba(36,40,47,.18); background: #fff; color: var(--ink-soft);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.gal-filters button:hover { border-color: var(--gold-ink); color: var(--ink); }
+.gal-filters button.on {
+  background: var(--night); border-color: var(--night); color: var(--paper);
+}
+
+/* ---------- grid ---------- */
+.gal-grid {
+  display: grid; gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+.gal-card {
+  margin: 0; cursor: zoom-in; border-radius: 8px; overflow: hidden;
+  background: #fff; border: 1px solid rgba(36,40,47,.1);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.gal-card:hover, .gal-card:focus-visible {
+  transform: translateY(-3px); border-color: rgba(244,196,48,.65);
+  box-shadow: 0 12px 28px rgba(36,40,47,.14); outline: none;
+}
+.gal-thumb {
+  position: relative; background: #11203a;
+  aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
+}
+/* 그림은 자르지 않는다 */
+.gal-thumb img { width: 100%; height: 100%; object-fit: contain; padding: .35rem; }
+.gal-badge, .gal-tag {
+  position: absolute; font-size: .64rem; letter-spacing: .04em;
+  padding: .16rem .45rem; border-radius: 3px;
+}
+.gal-badge {
+  top: .4rem; right: .4rem;
+  background: rgba(244,196,48,.92); color: #0d1b2e; font-weight: 600;
+}
+.gal-tag {
+  bottom: .4rem; left: .4rem;
+  background: rgba(8,17,32,.75); color: rgba(246,240,226,.9);
+}
+.gal-card figcaption { padding: .6rem .7rem .7rem; }
+.gal-card strong {
+  display: block; font-family: var(--serif); font-size: .96rem; font-weight: 600;
+  line-height: 1.25; margin-bottom: .2rem;
+}
+.gal-f { font-size: .68rem; color: var(--gold-ink); letter-spacing: .05em; }
+.gal-empty { text-align: center; color: var(--ink-soft); padding: 3rem 0; }
+
+/* ---------- lightbox ---------- */
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(6,13,24,.95);
+  display: flex; align-items: center; justify-content: center; padding: 2.5rem 1rem;
+  overflow-y: auto;
+}
+/* display:flex 가 HTML hidden 속성을 덮어쓰지 않도록 */
+.lb[hidden], .lb-close[hidden], .lb-nav[hidden] { display: none; }
+.lb-fig {
+  margin: 0; max-width: 64rem; width: 100%;
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+  gap: 1.8rem; align-items: start;
+}
+.lb-fig img {
+  width: 100%; max-height: 82vh; object-fit: contain;
+  border-radius: 4px; background: #0d1b2e;
+  box-shadow: 0 26px 70px rgba(0,0,0,.6);
+}
+.lb-fig figcaption { color: var(--paper); padding-top: .4rem; }
+.lb-fig h2 {
+  font-family: var(--serif); font-size: 1.7rem; font-weight: 600;
+  line-height: 1.2; margin-bottom: .35rem;
+}
+.lb-meta {
+  font-size: .74rem; letter-spacing: .08em; color: var(--yellow);
+  text-transform: uppercase; margin-bottom: 1.1rem;
+}
+.lb-lh { font-size: .78rem; color: rgba(246,240,226,.62); margin-bottom: .5rem; }
+.lb-letters { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: 1.2rem; }
+.lb-lchip {
+  font-size: .7rem; text-decoration: none;
+  color: rgba(246,240,226,.85); background: rgba(246,240,226,.09);
+  border: 1px solid rgba(246,240,226,.16); border-radius: 3px; padding: .15rem .45rem;
+  transition: background .15s;
+}
+.lb-lchip:hover { background: rgba(244,196,48,.28); }
+.lb-links { display: flex; flex-direction: column; gap: .4rem; font-size: .8rem; }
+.lb-links a { color: var(--yellow-soft); text-decoration: none; }
+.lb-links a:hover { text-decoration: underline; }
+
+.lb-close, .lb-nav {
+  position: fixed; z-index: 110; cursor: pointer;
+  background: rgba(8,17,32,.7); color: var(--paper);
+  border: 1px solid rgba(246,240,226,.22); border-radius: 50%;
+  width: 2.6rem; height: 2.6rem; font-size: 1.1rem; line-height: 1;
+  transition: background .2s, color .2s;
+}
+.lb-close:hover, .lb-nav:hover { background: var(--yellow); color: #0d1b2e; }
+.lb-close { top: 1rem; right: 1rem; }
+.lb-nav { top: 50%; transform: translateY(-50%); font-size: 1.6rem; }
+.lb-prev { left: 1rem; }
+.lb-next { right: 1rem; }
+
+@media (max-width: 820px) {
+  .lb-fig { grid-template-columns: 1fr; gap: 1rem; }
+  .lb-fig img { max-height: 56vh; }
+  .lb-nav { top: auto; bottom: 1rem; transform: none; }
+}

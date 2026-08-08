@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아를의 그림 — Vincent Wiki</title>
+<meta name="description" content="빈센트 반 고흐가 아를에서 그린 회화와 드로잉 전체, 그리고 각 그림을 언급한 편지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/wiki.css?v=20260808c">
+<link rel="stylesheet" href="../css/gallery.css?v=20260808d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+</head>
+<body class="gal-body">
+
+<header class="wnav">
+  <a class="wnav-brand" href="../wiki/">V<span>·</span>Wiki</a>
+  <nav class="wnav-links">
+    <a href="../wiki/" data-en="Wiki home">위키 홈</a>
+    <a href="graph.html" data-en="Knowledge graph">지식 그래프</a>
+    <a href="charts.html" data-en="Data">데이터</a>
+    <a href="../index.html" data-en="Arles site">Arles 사이트</a>
+  </nav>
+  <div class="langsw" role="group" aria-label="Language">
+    <button type="button" data-setlang="ko">KOR</button>
+    <button type="button" data-setlang="en">ENG</button>
+  </div>
+</header>
+
+<main class="gal-main">
+  <div class="gal-head">
+    <p class="kick" data-en="Every canvas and drawing from Arles">아를에서 그린 모든 그림</p>
+    <h1 data-en="The Paintings of Arles">아를의 그림</h1>
+    <p class="gal-lede" data-en="Vincent's Arles paintings and drawings, identified by the Faille (F) and Hulsker (JH) catalogue numbers used in the letters themselves. Click a work to enlarge; each one lists the letters that mention it.">
+      편지에 쓰인 카탈로그 번호(Faille F·Hulsker JH)로 식별한 아를 시기 회화와 드로잉입니다.
+      그림을 누르면 크게 볼 수 있고, 그 그림을 언급한 편지 목록이 함께 나옵니다.</p>
+
+    <div class="gal-stats" id="galStats"></div>
+
+    <div class="gal-controls">
+      <input type="search" id="galSearch" placeholder="제목·F번호 검색…" autocomplete="off">
+      <div class="gal-filters" role="group">
+        <button type="button" class="on" data-filter="all" data-en="All">전체</button>
+        <button type="button" data-filter="painting" data-en="Paintings">회화</button>
+        <button type="button" data-filter="drawing" data-en="Drawings">드로잉</button>
+        <button type="button" data-filter="letters" data-en="Mentioned in letters">편지에 언급</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="gal-grid" id="galGrid"></div>
+  <p class="gal-empty" id="galEmpty" hidden data-en="No works match.">해당하는 작품이 없습니다.</p>
+</main>
+
+<!-- lightbox -->
+<div class="lb" id="lb" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <figure class="lb-fig">
+    <img id="lbImg" src="" alt="">
+    <figcaption>
+      <h2 id="lbTitle"></h2>
+      <p class="lb-meta" id="lbMeta"></p>
+      <div class="lb-letters" id="lbLetters"></div>
+      <p class="lb-links" id="lbLinks"></p>
+    </figcaption>
+  </figure>
+</div>
+
+<footer class="wfoot">
+  <p data-en="Images are in the public domain, via Wikimedia Commons. Works are identified by the Faille (F) and Hulsker (JH) catalogue numbers cited in the letters, matched through Wikidata. Letter texts: Vincent van Gogh — The Letters, Van Gogh Museum &amp; Huygens ING, CC BY-NC-SA 4.0.">
+  이미지는 퍼블릭 도메인이며 Wikimedia Commons에서 가져왔습니다. 작품 식별은 편지에 인용된
+  Faille(F)·Hulsker(JH) 카탈로그 번호를 Wikidata로 매칭한 것입니다. 편지 원문·번역:
+  <em>Vincent van Gogh — The Letters</em>, Van Gogh Museum &amp; Huygens ING, CC BY-NC-SA 4.0.</p>
+  <p class="credit"><span data-en="Made by">제작</span>
+  <a href="http://www.storyandrecord.com/" target="_blank" rel="noopener">Story&amp;Record</a></p>
+</footer>
+
+<script src="../js/gallery.js?v=20260808f"></script>
+<script src="../js/wiki-i18n.js?v=20260808c"></script>
+</body>
+</html>

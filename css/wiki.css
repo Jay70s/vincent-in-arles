@@ -139,6 +139,13 @@ a { color: var(--gold-ink); }
 }
 .callout ul { margin-bottom: 0; }
 
+/* 본문 이미지(작품 도판) */
+.wimg {
+  display: block; width: 100%; max-width: 30rem; height: auto;
+  margin: .4rem 0 1.4rem; border-radius: 6px;
+  background: #11203a; box-shadow: 0 10px 30px rgba(36,40,47,.16);
+}
+
 /* 본문 표 */
 .tbl-wrap { overflow-x: auto; margin: 1.3rem 0; }
 .wbody table { width: 100%; border-collapse: collapse; font-size: .88rem; }
@@ -215,6 +222,12 @@ a.wl:hover { background: rgba(244,196,48,.18); border-color: var(--gold-ink); }
   padding-bottom: .4rem; border-bottom: 1px solid var(--rule);
   margin-bottom: 1rem;
 }
+.wsec-cta { margin-bottom: .9rem; }
+.wsec-cta a {
+  font-size: .8rem; text-decoration: none; color: var(--gold-ink);
+  border-bottom: 1px solid rgba(154,117,8,.4);
+}
+.wsec-cta a:hover { background: rgba(244,196,48,.16); }
 .whint { color: var(--ink-soft); font-size: .82rem; margin-bottom: .9rem; }
 .wgrid {
   list-style: none; padding: 0; margin: 0;

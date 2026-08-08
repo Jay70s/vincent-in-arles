@@ -356,6 +356,11 @@ a { color: inherit; }
   font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
   transition: background .25s, transform .25s;
 }
+.wikicta-alt {
+  background: transparent; color: var(--night);
+  border: 1px solid rgba(36,40,47,.35); margin-left: .5rem;
+}
+.wikicta-alt:hover { background: rgba(36,40,47,.08); }
 .wikicta-btn:hover { background: var(--night-deep); transform: translateY(-2px); }
 .wikicta-btn span { display: inline-block; margin-left: .35rem; }
 .wikicta-stats {
