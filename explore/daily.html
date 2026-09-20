@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아를의 나날 — Vincent Wiki</title>
+<meta name="description" content="빈센트 반 고흐가 아를에 머문 444일. 편지가 남은 날들을 하루 단위로 따라간다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/wiki.css?v=20260908a">
+<link rel="stylesheet" href="../css/daily.css?v=20260908c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗓️</text></svg>">
+</head>
+<body class="daily-body">
+
+<header class="wnav">
+  <a class="wnav-brand" href="../wiki/">V<span>·</span>Wiki</a>
+  <nav class="wnav-links">
+    <a href="../wiki/" data-en="Wiki home">위키 홈</a>
+    <a href="gallery.html" data-en="Paintings">아를의 그림</a>
+    <a href="graph.html" data-en="Knowledge graph">지식 그래프</a>
+    <a href="charts.html" data-en="Data">데이터</a>
+    <a href="../index.html" data-en="Arles site">Arles 사이트</a>
+  </nav>
+  <div class="langsw" role="group" aria-label="Language">
+    <button type="button" data-setlang="ko">KOR</button>
+    <button type="button" data-setlang="en">ENG</button>
+  </div>
+</header>
+
+<main class="dy-main">
+
+  <div class="dy-head">
+    <p class="kick" data-en="444 days, day by day">444일을 하루씩</p>
+    <h1 data-en="The Days of Arles">아를의 나날</h1>
+    <p class="dy-lede" data-en="From 20 February 1888 to 8 May 1889, Vincent van Gogh lived in Arles for 444 days. This timeline follows the days his letters survive — what he did, what he painted, whom he met, and where he was. Every fact carries its source; where the editors could not fix a date, the entry says so.">
+      1888년 2월 20일부터 1889년 5월 8일까지, 빈센트 반 고흐는 아를에서 444일을 살았습니다.
+      이 타임라인은 <strong>편지가 남은 날들</strong>을 따라갑니다. 그가 무엇을 했고, 무엇을 그렸으며,
+      누구를 만나고 어디에 있었는지를 <strong>출처와 함께</strong> 적었습니다.
+      편집자가 날짜를 확정하지 못한 편지는 그 사실을 그대로 표시합니다.</p>
+
+    <div class="dy-stats" id="dyStats"></div>
+
+    <div class="dy-legend">
+      <span><i class="pin exact"></i><span data-en="Date fixed by editors">편집자가 확정한 날짜</span></span>
+      <span><i class="pin about"></i><span data-en="Approximate">무렵</span></span>
+      <span><i class="pin or"></i><span data-en="One of two days">둘 중 하루</span></span>
+      <span><i class="pin range"></i><span data-en="Within a span">기간 안</span></span>
+    </div>
+
+    <div class="dy-controls">
+      <div class="dy-filters" role="group">
+        <button type="button" class="on" data-filter="all" data-en="All">전체</button>
+        <button type="button" data-filter="exact" data-en="Fixed dates only">확정 날짜만</button>
+        <button type="button" data-filter="works" data-en="Days he painted">그림을 그린 날</button>
+        <button type="button" data-filter="silence" data-en="The silences">침묵 구간</button>
+      </div>
+      <input type="search" id="dySearch" placeholder="인물·그림·주제 검색…" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="dy-wrap">
+    <aside class="dy-rail" id="dyRail" aria-label="월 이동"></aside>
+    <div class="dy-stream" id="dyStream">
+      <p class="dy-loading" data-en="Loading the days…">날짜를 불러오는 중…</p>
+    </div>
+  </div>
+
+  <footer class="dy-foot">
+    <p data-en="Letters and annotations: Van Gogh Museum &amp; Huygens ING, CC BY-NC-SA 4.0. Paintings: public domain.">
+      편지 원문·번역과 학술 주석: Van Gogh Museum &amp; Huygens ING, CC BY-NC-SA 4.0 · 그림: 퍼블릭 도메인</p>
+    <p class="dy-foot-note" data-en="Every statement on this page traces to a letter or to the editors' annotation. Nothing is invented.">
+      이 페이지의 모든 서술은 편지 또는 편집자 주석에서 나옵니다. 지어낸 것은 없습니다.</p>
+  </footer>
+</main>
+
+<script src="../js/daily.js?v=20260908e"></script>
+<script src="../js/wiki-i18n.js?v=20260908a"></script>
+</body>
+</html>
