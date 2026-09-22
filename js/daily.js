@@ -295,7 +295,7 @@
     });
   }
 
-  fetch("../data/daily.json")
+  fetch("../data/daily.json", { cache: "no-cache" })
     .then(function (r) { return r.json(); })
     .then(function (d) {
       DATA = d;

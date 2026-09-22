@@ -2,7 +2,17 @@
    원칙: 단일 hue(#bf8b0a, 검증 통과), 4px 라운드 데이터엔드, 2px 표면 간격,
         전 차트 hover 툴팁 + 표 보기(접근성). */
 (async () => {
-  const S = await (await fetch("../data/stats.json")).json();
+  const S = await (await fetch("../data/stats.json", { cache: "no-cache" })).json();
+
+  /* 언어 — 축·툴팁·표 머리글은 화면 언어를 따른다 */
+  const isEn = () => document.documentElement.getAttribute("data-lang") === "en";
+  const L = (ko, en) => (isEn() ? en : ko);
+  const MON_EN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  /* 주제·수신인 이름은 stats.json 이 두 언어를 함께 담고 있다 */
+  const nm = d => (isEn() && d.name_en) ? d.name_en : d.name;
+  const THEME_EN = Object.fromEntries((S.themes || []).map(d => [d.name, d.name_en]));
+  const thEn = s => (isEn() && THEME_EN[s]) ? THEME_EN[s] : s;
+  const lt = d => (isEn() && d.t_en) ? d.t_en : d.t;
   const GOLD = "#bf8b0a";
   const tip = document.getElementById("chTip");
 
@@ -17,13 +27,15 @@
   const plot = (id) => d3.select(`#${id} .plot`);
   const label = (ym) => {
     const [y, m] = ym.split("-");
-    return (m === "01" ? `${y.slice(2)}년 ` : "") + `${+m}월`;
+    return isEn()
+      ? MON_EN[+m - 1] + (m === "01" ? ` ${y.slice(2)}` : "")
+      : (m === "01" ? `${y.slice(2)}년 ` : "") + `${+m}월`;
   };
 
   // 표 보기(접근성) 추가
   function addTable(figId, cols, rows) {
     const d = d3.select(`#${figId}`).append("details").attr("class", "tbl-toggle");
-    d.append("summary").text("표로 보기");
+    d.append("summary").text(L("표로 보기", "View as table"));
     const t = d.append("table");
     t.append("thead").append("tr").selectAll("th").data(cols).join("th").text(d => d);
     t.append("tbody").selectAll("tr").data(rows).join("tr")
@@ -50,7 +62,7 @@
       .attr("x", d => x(d.ym)).attr("width", x.bandwidth())
       .attr("y", d => y(d.n)).attr("height", d => y(0) - y(d.n))
       .attr("rx", 4).attr("ry", 4)                   // 4px 라운드 데이터엔드
-      .on("mousemove", (e, d) => showTip(e, label(d.ym), `${d.n}편`))
+      .on("mousemove", (e, d) => showTip(e, label(d.ym), L(`${d.n}편`, `${d.n} letters`)))
       .on("mouseleave", hideTip);
 
     // 선택적 직접 라벨 (최대/최소만)
@@ -69,7 +81,7 @@
       .attr("transform", `translate(${M.l},0)`)
       .call(d3.axisLeft(y).ticks(5).tickSizeOuter(0));
 
-    addTable("figTimeline", ["월", "편지 수"], data.map(d => [label(d.ym), d.n]));
+    addTable("figTimeline", [L("월", "Month"), L("편지 수", "Letters")], data.map(d => [label(d.ym), d.n]));
   }
 
   /* ---------- 수평 바 공통 ---------- */
@@ -80,15 +92,15 @@
     const H = M.t + M.b + rows.length * rowH;
     const x = d3.scaleLinear().domain([0, d3.max(rows, d => d.n)])
       .range([M.l, W - M.r]);
-    const y = d3.scaleBand().domain(rows.map(d => d.name))
+    const y = d3.scaleBand().domain(rows.map(d => nm(d)))
       .range([M.t, H - M.b]).padding(0.24);
     const svg = plot(figId).append("svg").attr("viewBox", [0, 0, W, H]);
 
     svg.selectAll(".blab").data(rows).join("text")
       .attr("class", "blab").attr("x", M.l - 8)
-      .attr("y", d => y(d.name) + y.bandwidth() / 2)
+      .attr("y", d => y(nm(d)) + y.bandwidth() / 2)
       .attr("dy", ".35em").attr("text-anchor", "end")
-      .text(d => d.name.length > 26 ? d.name.slice(0, 25) + "…" : d.name);
+      .text(d => { const s = nm(d); return s.length > 26 ? s.slice(0, 25) + "…" : s; });
 
     svg.selectAll(".bar").data(rows).join("rect")
       .attr("class", "bar")
@@ -97,7 +109,7 @@
       .attr("width", d => x(d.n) - M.l)
       .attr("rx", 4).attr("ry", 4)
       .style("cursor", d => d.slug ? "pointer" : null)
-      .on("mousemove", (e, d) => showTip(e, d.name, `${d.n}편`))
+      .on("mousemove", (e, d) => showTip(e, nm(d), L(`${d.n}편`, `${d.n} letters`)))
       .on("mouseleave", hideTip)
       .on("click", (e, d) => {
         if (d.slug) location.href = `../wiki/${encodeURIComponent(d.slug)}/`;
@@ -105,10 +117,10 @@
 
     svg.selectAll(".vlab").data(rows).join("text")
       .attr("class", "vlab").attr("x", d => x(d.n) + 6)
-      .attr("y", d => y(d.name) + y.bandwidth() / 2)
+      .attr("y", d => y(nm(d)) + y.bandwidth() / 2)
       .attr("dy", ".35em").text(d => d.n);
 
-    addTable(figId, ["이름", "편지 수"], rows.map(d => [d.name, d.n]));
+    addTable(figId, [L("이름", "Name"), L("편지 수", "Letters")], rows.map(d => [nm(d), d.n]));
   }
 
   hbar("figThemes", S.themes);
@@ -122,8 +134,8 @@
     const host = plot("figFlow");
     S.flow.series.forEach(s => {
       const cell = host.append("div").attr("class", "sm-cell");
-      cell.append("h3").text(s.name);
-      cell.append("p").attr("class", "sm-n").text(`최대 ${d3.max(s.values)}편/월`);
+      cell.append("h3").text(nm(s));
+      cell.append("p").attr("class", "sm-n").text(L(`최대 ${d3.max(s.values)}편/월`, `peak ${d3.max(s.values)}/month`));
       const W = 220, H = 84, M = { t: 6, r: 4, b: 16, l: 4 };
       const x = d3.scalePoint().domain(months).range([M.l, W - M.r]);
       const y = d3.scaleLinear().domain([0, maxV]).range([H - M.b, M.t]);
@@ -147,7 +159,7 @@
           months.forEach((m, i) => {
             const d = Math.abs(x(m) - mx); if (d < bd) { bd = d; bi = i; }
           });
-          showTip(e, `${s.name} · ${label(months[bi])}`, `${s.values[bi]}편`);
+          showTip(e, `${nm(s)} · ${label(months[bi])}`, L(`${s.values[bi]}편`, `${s.values[bi]} letters`));
         })
         .on("mouseleave", hideTip);
 
@@ -156,8 +168,8 @@
         .call(d3.axisBottom(x).tickValues([months[0], months[months.length - 1]])
           .tickFormat(label).tickSizeOuter(0));
     });
-    addTable("figFlow", ["주제", ...months.map(label)],
-      S.flow.series.map(s => [s.name, ...s.values]));
+    addTable("figFlow", [L("주제", "Theme"), ...months.map(label)],
+      S.flow.series.map(s => [nm(s), ...s.values]));
   }
 
   /* ---------- 동시출현 히트맵 (sequential 단일 hue) ---------- */
@@ -188,7 +200,7 @@
       .attr("width", cs).attr("height", cs)
       .attr("rx", 3)
       .attr("fill", d => d.n ? color(d.n) : "rgba(246,240,226,.03)")
-      .on("mousemove", (e, d) => showTip(e, `${d.a} × ${d.b}`, `같은 편지 ${d.n}회`))
+      .on("mousemove", (e, d) => showTip(e, `${isEn() && d.a_en ? d.a_en : d.a} × ${isEn() && d.b_en ? d.b_en : d.b}`, L(`같은 편지 ${d.n}회`, `${d.n} shared letters`)))
       .on("mouseleave", hideTip);
 
     svg.selectAll(".hm-v").data(cells.filter(d => d.n >= 20)).join("text")
@@ -198,15 +210,15 @@
 
     svg.append("g").attr("class", "axis")
       .attr("transform", `translate(${M.l},0)`)
-      .call(d3.axisLeft(y).tickSizeOuter(0));
+      .call(d3.axisLeft(y).tickFormat(thEn).tickSizeOuter(0));
     svg.append("g").attr("class", "axis")
       .attr("transform", `translate(0,${M.t + cs * top.length})`)
-      .call(d3.axisBottom(x).tickSizeOuter(0))
+      .call(d3.axisBottom(x).tickFormat(thEn).tickSizeOuter(0))
       .selectAll("text").attr("transform", "rotate(-42)")
       .attr("text-anchor", "end").attr("dx", -4).attr("dy", 6);
 
-    addTable("figCo", ["주제 A", "주제 B", "동시 출현"],
-      S.cooccur.slice(0, 20).map(c => [c.a, c.b, c.n]));
+    addTable("figCo", [L("주제 A", "Theme A"), L("주제 B", "Theme B"), L("동시 출현", "Co-occurrences")],
+      S.cooccur.slice(0, 20).map(c => [thEn(c.a), thEn(c.b), c.n]));
   }
 
   /* ---------- 편지 길이 (연대순 바) ---------- */
@@ -230,7 +242,8 @@
       .attr("rx", 2).attr("ry", 2)
       .style("cursor", "pointer")
       .on("mousemove", (e, d) =>
-        showTip(e, d.t, `${d.len.toLocaleString()}자 · ${label(d.ym)}`))
+        showTip(e, lt(d), L(`${d.len.toLocaleString()}자 · ${label(d.ym)}`,
+          `${d.len.toLocaleString()} chars · ${label(d.ym)}`)))
       .on("mouseleave", hideTip)
       .on("click", (e, d) => location.href = `../wiki/${encodeURIComponent(d.slug)}/`);
 
@@ -241,11 +254,16 @@
       .attr("transform", `translate(0,${H - M.b})`)
       .call(d3.axisBottom(x).tickValues([]).tickSizeOuter(0));
     svg.append("text").attr("class", "blab")
-      .attr("x", M.l).attr("y", H - 8).text("1888년 2월");
+      .attr("x", M.l).attr("y", H - 8).text(L("1888년 2월", "Feb 1888"));
     svg.append("text").attr("class", "blab")
-      .attr("x", W - M.r).attr("y", H - 8).attr("text-anchor", "end").text("1889년 5월");
+      .attr("x", W - M.r).attr("y", H - 8).attr("text-anchor", "end").text(L("1889년 5월", "May 1889"));
 
     const longest = [...rows].sort((a, b) => b.len - a.len).slice(0, 10);
-    addTable("figLen", ["편지", "글자 수"], longest.map(d => [d.t, d.len.toLocaleString()]));
+    addTable("figLen", [L("편지", "Letter"), L("글자 수", "Characters")], longest.map(d => [lt(d), d.len.toLocaleString()]));
   }
+
+  /* 차트는 한 번 그리고 끝이라 언어만 바꿔서는 축·툴팁이 따라오지 않는다.
+     wiki-i18n.js 가 선택을 저장한 뒤이므로, 새로 고치면 그 언어로 다시 그려진다. */
+  document.querySelectorAll("[data-setlang]").forEach(b =>
+    b.addEventListener("click", () => setTimeout(() => location.reload(), 40)));
 })();

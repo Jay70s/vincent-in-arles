@@ -15,6 +15,7 @@
   --rule:       rgba(36,40,47,.12);
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --nav-h: 5.5rem;   /* 스크립트가 실제 헤더 높이로 덮어쓴다 */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,22 +29,31 @@ body {
 }
 a { color: var(--gold-ink); }
 
-/* ---------- nav ---------- */
+/* ---------- nav ----------
+   헤더 자식 수가 페이지마다 다르다(브랜드·검색·메뉴·언어 = 2~4개).
+   칼럼 수를 고정하면 넘치는 자식이 다음 줄로 밀려 헤더가 무너지므로 flex 로 둔다. */
 .wnav {
   position: sticky; top: 0; z-index: 40;
-  display: grid; grid-template-columns: auto 1fr auto;
-  gap: 1.4rem; align-items: center;
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: .6rem 1.2rem;
   padding: .7rem 1.6rem;
   background: rgba(8,17,32,.96);
   border-bottom: 1px solid rgba(244,196,48,.22);
 }
 .wnav-brand {
+  flex: 0 0 auto;
   font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
   color: var(--paper); text-decoration: none; letter-spacing: .04em;
   white-space: nowrap;
 }
 .wnav-brand span { color: var(--yellow); }
-.wnav-links { display: flex; gap: 1.1rem; white-space: nowrap; }
+/* 메뉴가 길어져도 항목이 쪼개지지 않게 — 넘치면 가로로 밀어 본다 */
+.wnav-links {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; gap: 1.1rem; white-space: nowrap;
+  overflow-x: auto; scrollbar-width: none;
+}
+.wnav-links::-webkit-scrollbar { display: none; }
 .wnav-links a {
   color: rgba(246,240,226,.72); text-decoration: none;
   font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
@@ -52,7 +62,7 @@ a { color: var(--gold-ink); }
 .wnav-links a:hover { color: var(--yellow); }
 
 /* ---------- search (pagefind) ---------- */
-.wsearch { max-width: 30rem; width: 100%; justify-self: center; }
+.wsearch { flex: 1 1 22rem; max-width: 30rem; min-width: 0; }
 .wsearch .pagefind-ui {
   --pagefind-ui-scale: .78;
   --pagefind-ui-primary: #f4c430;
@@ -215,7 +225,9 @@ a.wl:hover { background: rgba(244,196,48,.18); border-color: var(--gold-ink); }
   color: var(--ink-soft); font-size: .98rem;
 }
 /* sticky 헤더(73px)에 제목이 가려지지 않도록 앵커 정지 위치를 내린다 */
-.wsec, .whero { scroll-margin-top: 5.5rem; }
+/* 앵커 착지 여백은 헤더 실제 높이를 따라간다(--nav-h 는 wiki-i18n.js 가 채운다).
+   고정값으로 두면 메뉴가 늘 때마다 다시 어긋난다. */
+.wsec, .whero { scroll-margin-top: calc(var(--nav-h, 5.5rem) + 1rem); }
 .wsec { margin-bottom: 3rem; }
 .wsec h2 {
   font-family: var(--serif); font-size: 1.75rem; font-weight: 600;
@@ -252,9 +264,9 @@ a.wl:hover { background: rgba(244,196,48,.18); border-color: var(--gold-ink); }
 
 /* ---------- 언어 스위치 (KOR/ENG) ---------- */
 .langsw {
-  display: inline-flex; flex: none;
+  display: inline-flex; flex: 0 0 auto; margin-left: auto;
   border: 1px solid rgba(246,240,226,.28); border-radius: 2rem;
-  overflow: hidden; margin-left: .4rem;
+  overflow: hidden;
 }
 .langsw button {
   font-family: var(--sans); font-size: .66rem; letter-spacing: .1em;
@@ -306,15 +318,13 @@ html[data-lang="en"] .ko-only { display: none; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 820px) {
-  .wnav {
-    grid-template-columns: auto auto; gap: .6rem 1rem;
-    padding: .6rem 1rem;
-  }
-  .wsearch { grid-column: 1 / -1; order: 3; max-width: none; }
-  .wnav-links {
-    justify-self: end; gap: .7rem;
-    flex-wrap: wrap; justify-content: flex-end;
-  }
+  /* 좁은 화면에서는 3행으로 접는다: [브랜드 · 언어] / [메뉴] / [검색]
+     메뉴는 줄바꿈 대신 가로 스크롤 — 항목이 쌓이면 헤더가 화면을 다 먹는다. */
+  .wnav { gap: .5rem .9rem; padding: .6rem 1rem; }
+  .wnav-brand { order: 1; }
+  .langsw     { order: 2; }
+  .wnav-links { order: 3; flex: 1 0 100%; flex-wrap: nowrap; gap: .85rem; }
+  .wsearch    { order: 4; flex: 1 0 100%; max-width: none; }
   .wnav-links a { font-size: .68rem; }
   .bl-list, .wgrid { grid-template-columns: 1fr; }
 }

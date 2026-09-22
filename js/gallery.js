@@ -1,6 +1,6 @@
 /* 아를의 그림 — 갤러리 + 라이트박스 */
 (async () => {
-  const data = await (await fetch("../data/art.json")).json();
+  const data = await (await fetch("../data/art.json", { cache: "no-cache" })).json();
   const works = data.works.filter(w => w.thumb);   // 이미지 확보된 작품만
   const grid = document.getElementById("galGrid");
   const empty = document.getElementById("galEmpty");

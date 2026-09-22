@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/wiki.css?v=20260806">
-<link rel="stylesheet" href="../css/explore.css?v=20260806">
+<link rel="stylesheet" href="../css/wiki.css?v=20260921b">
+<link rel="stylesheet" href="../css/explore.css?v=20260921b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
 <body class="ch-body">
@@ -17,83 +17,90 @@
 <header class="wnav">
   <a class="wnav-brand" href="../wiki/">V<span>·</span>Wiki</a>
   <nav class="wnav-links">
-    <a href="../wiki/">위키 홈</a>
-    <a href="gallery.html" data-en="The Paintings">아를의 그림</a>
-    <a href="daily.html" data-en="The Days">아를의 나날</a>
-    <a href="graph.html">지식 그래프</a>
-    <a href="../index.html">Arles 사이트</a>
+    <a href="../wiki/#explore" data-en="Explore">둘러보기</a>
+    <a href="../wiki/#maps" data-en="Maps">지도</a>
+    <a href="../wiki/#themes" data-en="Themes">주제</a>
+    <a href="../wiki/#art" data-en="The Paintings">아를의 그림</a>
+    <a href="../wiki/#daily" data-en="The Days">아를의 나날</a>
+    <a href="../wiki/#people" data-en="People">인물</a>
+    <a href="../wiki/#letters" data-en="Letters">편지</a>
+    <a href="../index.html" data-en="Arles Site">Arles 사이트</a>
   </nav>
+  <div class="langsw" role="group" aria-label="Language">
+    <button type="button" data-setlang="ko">KOR</button>
+    <button type="button" data-setlang="en">ENG</button>
+  </div>
 </header>
 
 <main class="ch-main">
   <div class="ch-head">
-    <p class="kick">아를 편지 173편의 통계</p>
-    <h1>데이터로 보는 15개월</h1>
-    <p>편지를 세어보면 이야기가 보입니다. 아래 모든 숫자는 이 위키의 편지 노트에서
+    <p class="kick" data-en="What 173 letters from Arles add up to">아를 편지 173편의 통계</p>
+    <h1 data-en="Fifteen Months in Numbers">데이터로 보는 15개월</h1>
+    <p data-en="Count the letters and a story appears. Every figure below is tallied automatically from the letter notes in this wiki; hover a bar or cell to see its value.">편지를 세어보면 이야기가 보입니다. 아래 모든 숫자는 이 위키의 편지 노트에서
     자동 집계한 것이며, 막대나 칸에 마우스를 올리면 값이 표시됩니다.</p>
   </div>
 
   <figure class="fig" id="figTimeline">
-    <h2>편지의 밀물과 썰물</h2>
-    <p class="sub">월별 편지 수 · 1888년 2월 ~ 1889년 5월</p>
+    <h2 data-en="The Tide of Letters">편지의 밀물과 썰물</h2>
+    <p class="sub" data-en="Letters per month · February 1888 – May 1889">월별 편지 수 · 1888년 2월 ~ 1889년 5월</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — 10월에 20편으로 최고조에 이릅니다(고갱을 맞을 준비).
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — October peaks at 20 letters (preparing for Gauguin). Then November and December, the months Gauguin was actually there, collapse to 10: you do not write to someone living in the same house. January springs back to 13 — after the crisis there were more people to reassure."><b>읽는 법</b> — 10월에 20편으로 최고조에 이릅니다(고갱을 맞을 준비).
     그런데 고갱이 도착한 11월과 12월에는 10편으로 급감합니다. 같은 집에 살면 편지를 쓸 이유가 없기 때문입니다.
     1월에 다시 13편으로 튀어오르는 것은 위기 이후 안심시켜야 할 사람이 많아졌다는 뜻입니다.</p>
   </figure>
 
   <figure class="fig" id="figThemes">
-    <h2>무엇을 반복해서 말했는가</h2>
-    <p class="sub">주제별 편지 수 · 한 편지에 여러 주제가 붙을 수 있습니다</p>
+    <h2 data-en="What He Said Over and Over">무엇을 반복해서 말했는가</h2>
+    <p class="sub" data-en="Letters per theme · a letter can carry several themes">주제별 편지 수 · 한 편지에 여러 주제가 붙을 수 있습니다</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — 1·2위가 <b>고갱과의 협업</b>과 <b>재정과 테오</b>입니다.
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — First and second are &lt;b&gt;Working with Gauguin&lt;/b&gt; and &lt;b&gt;Money &amp; Theo&lt;/b&gt;. His Arles was, in the end, fifteen months between someone to paint with and the money that made painting possible."><b>읽는 법</b> — 1·2위가 <b>고갱과의 협업</b>과 <b>재정과 테오</b>입니다.
     그의 아를은 결국 &lsquo;함께 그릴 사람&rsquo;과 &lsquo;그릴 수 있게 해줄 돈&rsquo; 사이의 15개월이었습니다.</p>
   </figure>
 
   <figure class="fig" id="figFlow">
-    <h2>주제는 계절처럼 바뀐다</h2>
-    <p class="sub">상위 6개 주제의 월별 추이 · 각 칸의 세로 눈금은 동일</p>
+    <h2 data-en="Themes Turn Like Seasons">주제는 계절처럼 바뀐다</h2>
+    <p class="sub" data-en="Monthly course of the top 6 themes · all panels share one vertical scale">상위 6개 주제의 월별 추이 · 각 칸의 세로 눈금은 동일</p>
     <div class="plot sm-grid"></div>
-    <p class="note"><b>읽는 법</b> — <b>고갱과의 협업</b>은 여름부터 부풀어 10월에 정점을 찍고,
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — &lt;b&gt;Working with Gauguin&lt;/b&gt; swells from summer and peaks in October; &lt;b&gt;Mental Health&lt;/b&gt; surges in January, after the December crisis. The curves alone give away the order of that year's events."><b>읽는 법</b> — <b>고갱과의 협업</b>은 여름부터 부풀어 10월에 정점을 찍고,
     <b>정신건강</b>은 12월 위기 이후 1월에 솟구칩니다. 주제 곡선만 봐도 그해의 사건 순서가 드러납니다.</p>
   </figure>
 
   <figure class="fig" id="figAddr">
-    <h2>누구에게 썼는가</h2>
-    <p class="sub">수신인별 편지 수</p>
+    <h2 data-en="Whom He Wrote To">누구에게 썼는가</h2>
+    <p class="sub" data-en="Letters per addressee">수신인별 편지 수</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — 173편 중 129편이 동생 테오에게 갔습니다.
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — 129 of the 173 letters went to his brother Theo. Everyone else put together does not reach a third of that."><b>읽는 법</b> — 173편 중 129편이 동생 테오에게 갔습니다.
     나머지를 다 합쳐도 테오의 3분의 1이 안 됩니다.</p>
   </figure>
 
   <figure class="fig" id="figPeople">
-    <h2>편지에 가장 자주 등장한 사람</h2>
-    <p class="sub">상위 20명 · 언급된 편지 수</p>
+    <h2 data-en="Who Appears Most Often">편지에 가장 자주 등장한 사람</h2>
+    <p class="sub" data-en="Top 20 · number of letters mentioning them">상위 20명 · 언급된 편지 수</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — 1위 고갱(116편)은 2위 베르나르(76편)를 크게 앞섭니다.
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — Gauguin leads with 116 letters, well ahead of Bernard's 76. That third and fourth place go to &lt;b&gt;Delacroix&lt;/b&gt; and &lt;b&gt;Monticelli&lt;/b&gt; is telling — he spoke of dead painters more often than of living colleagues."><b>읽는 법</b> — 1위 고갱(116편)은 2위 베르나르(76편)를 크게 앞섭니다.
     3·4위가 <b>들라크루아</b>와 <b>몽티첼리</b>인 것도 흥미롭습니다 — 살아있는 동료보다
     죽은 화가를 더 자주 이야기한 셈입니다.</p>
   </figure>
 
   <figure class="fig" id="figCo">
-    <h2>어떤 주제가 함께 나타나는가</h2>
-    <p class="sub">상위 8개 주제의 동시 출현 횟수 · 색이 진할수록 더 자주 같은 편지에</p>
+    <h2 data-en="Which Themes Travel Together">어떤 주제가 함께 나타나는가</h2>
+    <p class="sub" data-en="Co-occurrence of the top 8 themes · darker means more often in the same letter">상위 8개 주제의 동시 출현 횟수 · 색이 진할수록 더 자주 같은 편지에</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — <b>고갱과의 협업 × 재정과 테오</b>가 가장 짙습니다.
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — &lt;b&gt;Working with Gauguin × Money &amp; Theo&lt;/b&gt; is the darkest cell. Bringing Gauguin down was always in the same paragraph as the money to do it."><b>읽는 법</b> — <b>고갱과의 협업 × 재정과 테오</b>가 가장 짙습니다.
     고갱을 부르는 일은 언제나 돈 이야기와 같은 문단에 있었습니다.</p>
   </figure>
 
   <figure class="fig" id="figLen">
-    <h2>편지는 얼마나 길었나</h2>
-    <p class="sub">편지별 영어 번역 글자 수 · 연대순</p>
+    <h2 data-en="How Long Were the Letters">편지는 얼마나 길었나</h2>
+    <p class="sub" data-en="Characters in the English translation, letter by letter · chronological">편지별 영어 번역 글자 수 · 연대순</p>
     <div class="plot"></div>
-    <p class="note"><b>읽는 법</b> — 가장 긴 편지들은 베르나르에게 보낸 예술론 편지와
+    <p class="note" data-en="&lt;b&gt;How to read it&lt;/b&gt; — The longest are the letters on art sent to Bernard and those explaining his plans to Theo. The ones written just after the crisis are strikingly short."><b>읽는 법</b> — 가장 긴 편지들은 베르나르에게 보낸 예술론 편지와
     테오에게 계획을 설명하는 편지들입니다. 위기 직후의 편지는 유난히 짧습니다.</p>
   </figure>
 </main>
 
 <footer class="wfoot">
-  <p>집계 출처: 이 위키의 편지 173편 노트(프론트매터·주제 태그). 편지 원문·번역은
+  <p data-en="Tallied from the 173 letter notes in this wiki (front matter and theme tags). Letter texts and translations: &lt;em&gt;Vincent van Gogh — The Letters&lt;/em&gt;, Van Gogh Museum &amp; Huygens ING · &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/4.0/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;CC BY-NC-SA 4.0&lt;/a&gt;.">집계 출처: 이 위키의 편지 173편 노트(프론트매터·주제 태그). 편지 원문·번역은
   <em>Vincent van Gogh — The Letters</em>, Van Gogh Museum &amp; Huygens ING ·
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.</p>
 </footer>
@@ -101,6 +108,7 @@
 <div class="ch-tip" id="chTip" hidden></div>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-<script src="../js/charts.js?v=20260806"></script>
+<script src="../js/charts.js?v=20260921b"></script>
+<script src="../js/wiki-i18n.js?v=20260921b"></script>
 </body>
 </html>

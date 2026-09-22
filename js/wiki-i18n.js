@@ -49,9 +49,22 @@
     return (navigator.language || "").toLowerCase().startsWith("ko") ? "ko" : "en";
   }
 
+  /* 앵커로 이동했을 때 제목이 고정 헤더에 가리지 않도록, 헤더 높이를 CSS 에 넘긴다.
+     헤더는 폭·언어·검색 UI 에 따라 높이가 변하므로 값을 고정하지 않고 계속 따라간다. */
+  function syncNavHeight() {
+    const nav = document.querySelector(".wnav");
+    if (!nav) return;
+    root.style.setProperty("--nav-h", Math.round(nav.getBoundingClientRect().height) + "px");
+  }
+
   window.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-setlang]").forEach(btn =>
       btn.addEventListener("click", () => apply(btn.dataset.setlang)));
     apply(initial());   // 항상 호출 — 검색 UI 생성도 여기서 이뤄진다
+
+    syncNavHeight();
+    window.addEventListener("resize", syncNavHeight);
+    const nav = document.querySelector(".wnav");
+    if (nav && window.ResizeObserver) new ResizeObserver(syncNavHeight).observe(nav);
   });
 })();

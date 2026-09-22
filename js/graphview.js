@@ -1,16 +1,23 @@
 /* 옵시디언식 지식 그래프 뷰 — D3 force simulation */
 (async () => {
   const svgEl = document.getElementById("gv");
-  const data = await (await fetch("../data/graph.json")).json();
+  const data = await (await fetch("../data/graph.json", { cache: "no-cache" })).json();
 
   // 색약 접근성 검증을 통과한 3색 (dark surface #0d1b2e 기준):
   // 명도 밴드·채도·CVD 분리·정상시야·대비 전 항목 PASS
   const KIND = {
-    letter: { color: "#bf8b0a", r: 3.2, label: "편지" },
-    person: { color: "#3a72cc", r: 3.0, label: "인물" },
-    theme:  { color: "#a9628c", r: 5.0, label: "주제" },
-    other:  { color: "#8a8577", r: 2.6, label: "기타" },
+    letter: { color: "#bf8b0a", r: 3.2, label: "편지", label_en: "Letter" },
+    person: { color: "#3a72cc", r: 3.0, label: "인물", label_en: "Person" },
+    theme:  { color: "#a9628c", r: 5.0, label: "주제", label_en: "Theme" },
+    other:  { color: "#8a8577", r: 2.6, label: "기타", label_en: "Other" },
   };
+
+  /* 언어 — 노드 라벨은 graph.json 의 label_en(위키와 같은 규칙)을 쓴다 */
+  const isEn = () => document.documentElement.getAttribute("data-lang") === "en";
+  const L = (ko, en) => (isEn() ? en : ko);
+  const nodeLabel = d => (isEn() && d.label_en) ? d.label_en : d.label;
+  const kindLabel = d => (isEn() ? KIND[d.kind].label_en : KIND[d.kind].label);
+
   const kindOf = (n) => KIND[n.kind] ? n.kind : "other";
 
   // 카운트
@@ -20,7 +27,8 @@
   document.getElementById("cPerson").textContent = counts.person;
   document.getElementById("cTheme").textContent = counts.theme;
   document.getElementById("gvMeta").textContent =
-    `전체 ${data.nodes.length}개 노드 · ${data.links.length}개 연결`;
+    L(`전체 ${data.nodes.length}개 노드 · ${data.links.length}개 연결`,
+     `${data.nodes.length} nodes · ${data.links.length} links`);
 
   const svg = d3.select(svgEl);
   let W = svgEl.clientWidth, H = svgEl.clientHeight;
@@ -108,7 +116,7 @@
     labelSel = gLabel.selectAll("text").data(
       visible.filter(d => d.kind === "theme" || d.deg >= 100), d => d.id)
       .join("text")
-      .text(d => d.label.length > 22 ? d.label.slice(0, 21) + "…" : d.label)
+      .text(d => { const s = nodeLabel(d); return s.length > 22 ? s.slice(0, 21) + "…" : s; })
       .attr("font-size", d => d.kind === "theme" ? 11.5 : 10)
       .attr("font-weight", d => d.kind === "theme" ? 600 : 400)
       .attr("fill", d => d.kind === "theme" ? "#f0d9a8" : "rgba(246,240,226,.85)")
@@ -122,7 +130,8 @@
     sim.alpha(.7).restart();
 
     document.getElementById("gvMeta").textContent =
-      `표시 중 ${visible.length}개 노드 · ${links.length}개 연결`;
+      L(`표시 중 ${visible.length}개 노드 · ${links.length}개 연결`,
+       `Showing ${visible.length} nodes · ${links.length} links`);
     highlight();
   }
 
@@ -146,7 +155,7 @@
       return;
     }
     tip.hidden = false;
-    tip.innerHTML = `<b>${d.label}</b><span>${KIND[d.kind].label} · 연결 ${d.deg}</span>`;
+    tip.innerHTML = `<b>${nodeLabel(d)}</b><span>${kindLabel(d)} · ${L("연결", "links")} ${d.deg}</span>`;
     const stage = document.querySelector(".gv-stage").getBoundingClientRect();
     tip.style.left = (e.clientX - stage.left + 14) + "px";
     tip.style.top = (e.clientY - stage.top + 14) + "px";
@@ -161,10 +170,10 @@
     const conn = [...nb].map(id => byId.get(id)).filter(Boolean)
       .sort((a, b) => b.deg - a.deg).slice(0, 8);
     info.innerHTML = `
-      <p class="gv-inode"><b>${d.label}</b></p>
-      <p class="gv-ikind">${KIND[d.kind].label} · 연결 ${d.deg}</p>
-      <p class="gv-iconn">${conn.map(c => `<span>${c.label}</span>`).join("")}</p>
-      <p class="gv-igo">클릭하면 문서로 이동 →</p>`;
+      <p class="gv-inode"><b>${nodeLabel(d)}</b></p>
+      <p class="gv-ikind">${kindLabel(d)} · ${L("연결", "links")} ${d.deg}</p>
+      <p class="gv-iconn">${conn.map(c => `<span>${nodeLabel(c)}</span>`).join("")}</p>
+      <p class="gv-igo">${L("클릭하면 문서로 이동 →", "Click to open the page →")}</p>`;
   }
 
   // 검색 강조
@@ -173,9 +182,9 @@
     const q = state.q.trim().toLowerCase();
     if (!q) { nodeSel.attr("stroke", "#081120").attr("stroke-width", .8); return; }
     nodeSel
-      .attr("stroke", d => d.label.toLowerCase().includes(q) ? "#fff" : "#081120")
-      .attr("stroke-width", d => d.label.toLowerCase().includes(q) ? 2.4 : .8)
-      .attr("opacity", d => d.label.toLowerCase().includes(q) ? 1 : .2);
+      .attr("stroke", d => (d.label + " " + (d.label_en || "")).toLowerCase().includes(q) ? "#fff" : "#081120")
+      .attr("stroke-width", d => (d.label + " " + (d.label_en || "")).toLowerCase().includes(q) ? 2.4 : .8)
+      .attr("opacity", d => (d.label + " " + (d.label_en || "")).toLowerCase().includes(q) ? 1 : .2);
   }
 
   // 컨트롤
@@ -195,6 +204,10 @@
     if (!state.q) { nodeSel && nodeSel.attr("opacity", 1); }
     highlight();
   });
+
+  /* 언어를 바꾸면 D3 가 그린 라벨·패널은 스스로 갱신되지 않으므로 다시 그린다 */
+  document.querySelectorAll("[data-setlang]").forEach(b =>
+    b.addEventListener("click", () => setTimeout(apply, 0)));
 
   addEventListener("resize", () => {
     W = svgEl.clientWidth; H = svgEl.clientHeight;
