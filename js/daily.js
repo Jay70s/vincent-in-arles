@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var DATA = null;
+  var DATA = null, EPILOGUE = null;
   var state = { filter: "all", q: "" };
 
   var MONTH_KO = ["1월", "2월", "3월", "4월", "5월", "6월",
@@ -226,9 +226,61 @@
         "</section>";
     }
 
+    if (EPILOGUE) {
+      railHtml += '<a href="#m-last" data-m="last">' + t("마지막 편지", "Last letters") + "<i>2</i></a>";
+      html += epilogue();
+    }
+
     stream.innerHTML = html;
     rail.innerHTML = railHtml;
     watchMonths();
+  }
+
+  /* 에필로그 — 1890년 7월 23일, 같은 날 두 번 쓴 편지.
+     아를 밖(오베르)의 편지라 타임라인 본문과 섞지 않고 끝에 따로 둔다.
+     그 뒤로 편지가 없다는 사실만 적는다. 이 자료로 말할 수 있는 것은 거기까지다. */
+  function epilogue() {
+    var e = EPILOGUE;
+    var cards = e.letters.map(function (l) {
+      var quotes = l.quotes.map(function (q) {
+        return '<blockquote class="ep-q"><p class="ep-en">“' + esc(q.en) + '”</p>' +
+          '<p class="ep-ko">' + esc(q.ko) + "</p></blockquote>";
+      }).join("");
+      return '<article class="ep-card" data-kind="' + (l.id === "RM25" ? "unsent" : "sent") + '">' +
+        '<header><h3>' + esc(lang() === "en" ? l.label_en : l.label) + "</h3>" +
+        '<p class="ep-status">' + esc(lang() === "en" ? l.status_en : l.status) + "</p></header>" +
+        '<p class="ep-sum">' + esc(l.summary) + "</p>" +
+        quotes +
+        '<p class="ep-ends">' + esc(lang() === "en" ? l.ends_en : l.ends) + "</p>" +
+        '<details class="dy-facts"><summary>' +
+          t("전문 읽기 (영어 번역 " + l.paras.length + "단락)",
+            "Read it in full (" + l.paras.length + " paragraphs)") + "</summary>" +
+          l.paras.map(function (p) { return '<p class="ep-para">' + esc(p) + "</p>"; }).join("") +
+          '<p class="ep-src">' + esc(l.source) + ' · <a href="' + esc(l.orig) +
+          '" target="_blank" rel="noopener">vangoghletters.org</a></p>' +
+        "</details></article>";
+    }).join("");
+
+    var rows = e.contrast.map(function (c) {
+      return "<tr><th>" + esc(lang() === "en" ? c.topic_en : c.topic) + "</th>" +
+        "<td>" + esc(lang() === "en" ? c.unsent_en : c.unsent) + "</td>" +
+        "<td>" + esc(lang() === "en" ? c.sent_en : c.sent) + "</td></tr>";
+    }).join("");
+
+    return '<section class="dy-month ep" id="m-last">' +
+      '<div class="dy-month-head"><h2>' + t("마지막 편지", "The Last Letters") + "</h2><em>" +
+      t("1890년 7월 23일 · 오베르쉬르우아즈", "23 July 1890 · Auvers-sur-Oise") + "</em></div>" +
+      '<p class="dy-epilogue">' +
+      t("아를을 떠난 지 1년 2개월 뒤. 그는 같은 날 테오에게 두 번 썼고, 한 통만 부쳤습니다.",
+        "One year and two months after he left Arles. He wrote to Theo twice that day, and sent one.") +
+      "</p>" +
+      '<div class="ep-pair">' + cards + "</div>" +
+      '<div class="ep-diff"><h3>' + t("무엇을 덜어냈는가", "What he took out") + "</h3>" +
+      "<table><thead><tr><th></th><th>" + t("부치지 않은 편지", "Never sent") +
+      "</th><th>" + t("부친 편지", "Sent") + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>" +
+      '<p class="ep-silence">' +
+      t("이 뒤로 편지가 없습니다.", "There are no further letters.") + "</p>" +
+      "</section>";
   }
 
   /* 침묵만 모아 보기 — 사건이 일어난 자리는 대개 편지가 끊긴 자리다 */
@@ -309,10 +361,15 @@
     });
   }
 
-  fetch("../data/daily.json", { cache: "no-cache" })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      DATA = d;
+  Promise.all([
+    fetch("../data/daily.json", { cache: "no-cache" }).then(function (r) { return r.json(); }),
+    fetch("../data/epilogue.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; }),
+  ])
+    .then(function (both) {
+      DATA = both[0];
+      EPILOGUE = both[1];
       stats();
       bind();
       render();

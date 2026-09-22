@@ -228,3 +228,61 @@
   .dy-when { padding-left: 1rem; }
   .dy-silence .dy-when::before { height: 3px; width: 26px; border-left: none; border-top: 2px dotted var(--gold-ink); top: .6rem; }
 }
+
+/* ---------- 에필로그 — 같은 날 두 번 쓴 편지 ---------- */
+.ep .dy-month-head h2 { color: var(--night); }
+.ep-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin: 1.4rem 0 2rem; }
+.ep-card {
+  padding: 1.2rem 1.3rem; border-radius: 4px;
+  background: var(--paper); border: 1px solid var(--rule);
+}
+/* 부치지 않은 편지는 미완성이라는 것이 보이게 — 아래 모서리를 열어 둔다 */
+.ep-card[data-kind="unsent"] { border-bottom: 2px dashed rgba(154,117,8,.5); }
+.ep-card[data-kind="sent"]   { border-bottom: 2px solid var(--gold-ink); }
+.ep-card h3 { font-family: var(--serif); font-size: 1.22rem; font-weight: 600; }
+.ep-status { font-size: .72rem; color: var(--ink-soft); margin-top: .25rem; line-height: 1.5; }
+.ep-sum { font-size: .89rem; line-height: 1.78; color: var(--ink); margin-top: .9rem; }
+
+.ep-q { margin: .95rem 0 0; padding-left: .9rem; border-left: 2px solid var(--rule); }
+.ep-en {
+  font-family: var(--serif); font-size: .92rem; font-style: italic;
+  color: var(--ink); line-height: 1.6;
+}
+.ep-ko { font-size: .8rem; color: var(--ink-soft); line-height: 1.7; margin-top: .25rem; }
+/* 영어로 볼 때 바로 위 원문과 겹치므로 감춘다 (요약은 아를 편지와 같이 남긴다) */
+html[data-lang="en"] .ep-ko { display: none; }
+.ep-ends {
+  margin-top: 1rem; font-size: .76rem; color: var(--gold-ink);
+  font-style: italic;
+}
+.ep-para { font-size: .84rem; line-height: 1.8; color: var(--ink-soft); margin-top: .7rem; }
+.ep-src { font-size: .7rem; color: var(--ink-soft); margin-top: 1rem; opacity: .8; }
+
+/* 무엇을 덜어냈는가 */
+.ep-diff h3 {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin-bottom: .7rem;
+}
+.ep-diff table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.ep-diff th, .ep-diff td {
+  text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--rule);
+  vertical-align: top; line-height: 1.6;
+}
+.ep-diff thead th { font-size: .72rem; color: var(--ink-soft); font-weight: 500; }
+.ep-diff tbody th { width: 9rem; font-weight: 600; color: var(--ink); }
+.ep-diff tbody td:first-of-type { color: var(--ink-soft); }
+
+/* 이 뒤로 편지가 없습니다 — 설명하지 않는다 */
+.ep-silence {
+  margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  text-align: center; font-family: var(--serif); font-size: 1.05rem;
+  font-style: italic; color: var(--ink-soft); letter-spacing: .02em;
+}
+
+@media (max-width: 760px) {
+  .ep-pair { grid-template-columns: 1fr; gap: 1.1rem; }
+  .ep-diff tbody th { width: auto; display: block; border-bottom: none; padding-bottom: .2rem; }
+  .ep-diff tbody td { display: block; padding-top: .2rem; }
+  .ep-diff thead { display: none; }
+  .ep-diff tbody td:first-of-type::before { content: "부치지 않은 편지 — "; color: var(--gold-ink); }
+  .ep-diff tbody td:last-of-type::before { content: "부친 편지 — "; color: var(--gold-ink); }
+}
