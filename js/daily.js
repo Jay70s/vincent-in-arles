@@ -191,8 +191,14 @@
         if ((a.precision === "exact") !== (b.precision === "exact")) return a.precision === "exact" ? -1 : 1;
         return (a.date || "").localeCompare(b.date || "");
       });
-      var painted = items.reduce(function (n, e) {
-        return n + e.works.filter(function (w) { return w.rel === "working"; }).length; }, 0);
+      // 같은 그림이 여러 편지에 걸리므로 '연결 건수'가 아니라 '작품 수'를 센다
+      var seen = {}, painted = 0;
+      items.forEach(function (e) {
+        e.works.forEach(function (w) {
+          if (w.rel !== "working" || !w.f || seen[w.f]) return;
+          seen[w.f] = 1; painted += 1;
+        });
+      });
 
       railHtml += '<a href="#m-' + m + '" data-m="' + m + '">' + monthLabel(m) +
                   "<i>" + items.length + "</i></a>";
@@ -332,9 +338,9 @@
     var c = DATA.counts, p = DATA.period;
     var rows = [
       [p.span, t("아를에서 보낸 날", "days in Arles")],
-      [c.letters, t("남은 편지", "letters")],
+      [c.letters, t("이 아카이브가 다룬 편지", "letters in this archive")],
       [c.days, t("날짜가 확정된 날", "days precisely dated")],
-      [c.works, t("그날 작업한 그림", "works under way")],
+      [c.work_titles, t("아를에서 작업 중이라 말한 그림", "works under way in Arles")],
     ];
     document.getElementById("dyStats").innerHTML = rows.map(function (r) {
       return "<div><b>" + r[0] + "</b><span>" + r[1] + "</span></div>";
