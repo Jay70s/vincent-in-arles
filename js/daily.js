@@ -271,8 +271,8 @@
       '<div class="dy-month-head"><h2>' + t("마지막 편지", "The Last Letters") + "</h2><em>" +
       t("1890년 7월 23일 · 오베르쉬르우아즈", "23 July 1890 · Auvers-sur-Oise") + "</em></div>" +
       '<p class="dy-epilogue">' +
-      t("아를을 떠난 지 1년 2개월 뒤. 그는 같은 날 테오에게 두 번 썼고, 한 통만 부쳤습니다.",
-        "One year and two months after he left Arles. He wrote to Theo twice that day, and sent one.") +
+      t("아를을 떠난 지 1년 2개월 뒤. 빈센트는 같은 날 테오에게 두 통의 편지를 썼고, 그 중에서 한 통만 보냈습니다.",
+        "One year and two months after he left Arles. Vincent wrote Theo two letters that day, and sent only one of them.") +
       "</p>" +
       '<div class="ep-pair">' + cards + "</div>" +
       '<div class="ep-diff"><h3>' + t("무엇을 덜어냈는가", "What he took out") + "</h3>" +
