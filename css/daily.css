@@ -1,5 +1,6 @@
 /* 아를의 나날 — 날짜별 타임라인
-   신뢰도를 색과 형태로 구분한다. 확정된 날은 채운 점, 추정은 빈 점. */
+   신뢰도를 색과 형태로 구분한다. 확정된 날은 채운 점, 추정은 빈 점.
+   앵커 여백과 레일 위치는 --nav-h(헤더 실측 높이)에 연동한다. */
 
 .daily-body { background: var(--paper-warm); }
 
@@ -177,6 +178,8 @@
 .dy-people { margin-top: .7rem; font-size: .73rem; color: var(--ink-soft); }
 .dy-people a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--rule); }
 .dy-people a:hover { color: var(--ink); border-bottom-color: var(--gold-ink); }
+/* 당시 이미 세상을 떠난 인물 — 만난 사람과 구분한다 */
+.dy-gone { opacity: .72; font-style: italic; }
 
 /* ---------- 침묵 구간 ---------- */
 .dy-silence {

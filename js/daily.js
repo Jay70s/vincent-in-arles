@@ -79,15 +79,29 @@
       "</summary>" + items + "</details>";
   }
 
+  /* 편지에 이름이 나온다고 그날 만난 것은 아니다.
+     이미 세상을 떠난 화가·작가를 이야기한 경우가 많아 따로 묶는다. */
   function people(e) {
     if (!e.people.length) return "";
-    var names = e.people.slice(0, 8).map(function (p) {
-      var nm = esc(p.name);
-      return p.wiki
-        ? '<a href="../wiki/' + encodeURIComponent(p.wiki) + '/" title="' + esc(p.note) + '">' + nm + "</a>"
-        : '<span title="' + esc(p.note) + '">' + nm + "</span>";
-    }).join(", ");
-    return '<p class="dy-people">' + t("편지에 등장", "Mentioned") + ": " + names + "</p>";
+    function render(list) {
+      return list.map(function (p) {
+        var nm = esc(p.name);
+        return p.wiki
+          ? '<a href="../wiki/' + encodeURIComponent(p.wiki) + '/" title="' + esc(p.note) + '">' + nm + "</a>"
+          : '<span title="' + esc(p.note) + '">' + nm + "</span>";
+      }).join(", ");
+    }
+    var living = e.people.filter(function (p) { return p.alive !== false; }).slice(0, 8);
+    var gone = e.people.filter(function (p) { return p.alive === false; }).slice(0, 6);
+    var out = "";
+    if (living.length) {
+      out += '<p class="dy-people">' + t("편지에 등장", "Mentioned") + ": " + render(living) + "</p>";
+    }
+    if (gone.length) {
+      out += '<p class="dy-people dy-gone">' +
+        t("이야기한 고인", "Spoken of, already dead") + ": " + render(gone) + "</p>";
+    }
+    return out;
   }
 
   function why(e) {
